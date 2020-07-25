@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import Container from "./Container";
-import SearchForm from "./SearchForm";
-import SearchResults from "./SearchResults";
+import Container from "../Container";
+import SearchForm from "../SearchForm";
+import SearchResults from "../SearchResults";
 
 const CurrentData = props => {
   const [search, setSearch] = useState();
