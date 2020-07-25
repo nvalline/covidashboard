@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const Bcrypt = require("bcryptjs");
+const axios = require("axios");
 
 const app = express();
 const db = require("./models");
@@ -31,12 +32,12 @@ app.post("/api/event", (req, res) => {
 })
 
 //! Coronavirus API testing
-app.get("/api/covid-data", (req, res) => {
+app.get("/api/current/:state", (req, res) => {
     axios.get("https://covidtracking.com/api/v1/states/"
-    + search
+    + req.params.state
     + "/current.json")
-      .then(res => {
-          res.json();
+      .then(response => {
+        res.json(response.data);
       })
       .catch(e => console.log(e));
 })

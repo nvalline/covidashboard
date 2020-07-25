@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from "axios";
 import Container from "./Container";
 import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
@@ -16,20 +16,12 @@ const CurrentData = props => {
   //handle this when search button clicked
   function handleFormSubmit(event) {
     event.preventDefault();
-
-    axios.get("/api/covid-data")
+    
+    axios.get(`/api/current/${search}`)
       .then(res => {
-        console.log(res);
         setStateData(res.data);
       })
-
-    // axios.get("https://covidtracking.com/api/v1/states/"
-    // + search
-    // + "/current.json")
-    //   .then(res => {
-    //       setStateData(res.data);
-    //   })
-    //   .catch(e => console.log(e));
+      .catch(e => console.log(e));
   };
 
   return (
