@@ -10,7 +10,7 @@ const CurrentData = props => {
 
   //handle this when search input is changed
   function handleInputChange(event) {
-    setSearch(event.target.value);
+    setSearch(event.target.value.toLowerCase());
   };
 
   //handle this when search button clicked
