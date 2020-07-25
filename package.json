@@ -23,8 +23,10 @@
   },
   "homepage": "https://github.com/nvalline/project-3#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "moment-timezone": "^0.5.31",
     "mongoose": "^5.9.25"
   },
   "devDependencies": {
