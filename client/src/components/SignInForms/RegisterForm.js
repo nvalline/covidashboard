@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Input } from "./FormElements";
-import SubmitBtn from "./SubmitBtn";
+import { Input, Select } from "../FormElements";
+import SubmitBtn from "../SubmitBtn";
 
-function LoginForm() {
+function RegisterForm() {
     const [user, setUser] = useState();
 
     const handleInputChange = (event) => {
@@ -12,10 +12,12 @@ function LoginForm() {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
+
+        // remove before production
         const submittedUser = JSON.stringify(user);
         console.log(submittedUser)
 
-        // ! Enter Passport.js functionality to verify login credentials
+        // ! Enter Passport.js functionality to register user
 
     }
 
@@ -33,14 +35,26 @@ function LoginForm() {
                 placeholder="Password"
                 onChange={handleInputChange}
             />
-            <p>Or, <a href="#">create account</a></p>
+            <label htmlFor="state">Select Your State:</label>
+            <Select
+                name="state"
+                id="state"
+                onChange={handleInputChange}
+            />
+            <Input
+                type="text"
+                name="county"
+                placeholder="County"
+                onChange={handleInputChange}
+            />
+            <p>Or, <a href="#">login</a></p>
             <SubmitBtn
-                text="Login"
-                name="login"
+                text="Sign Up"
+                name="signUp"
                 onClick={handleFormSubmit}
             />
         </form>
     )
 }
 
-export default LoginForm;
+export default RegisterForm;
