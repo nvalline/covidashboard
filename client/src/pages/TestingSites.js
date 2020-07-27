@@ -10,6 +10,7 @@ function TestingSites() {
 
     function handleFormSubmit(event) {
         event.preventDefault();
+        
         let selector = document.getElementById("state-selector");
         setState(selector.options[selector.selectedIndex].value);
         setSites(testingSites[selector.options[selector.selectedIndex].value].sites);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import SearchForm from "../components/SearchForm";
+import { Select } from "../components/FormElements";
+import SubmitBtn from "../components/SubmitBtn";
 import SearchResults from "../components/SearchResults";
 
 const CurrentData = props => {
@@ -9,7 +10,8 @@ const CurrentData = props => {
 
   //handle this when search input is changed
   function handleInputChange(event) {
-    setSearch(event.target.value.toLowerCase());
+    let selector = document.getElementById("state-selector");
+    setSearch(selector.options[selector.selectedIndex].value.toLowerCase());
   };
 
   //handle this when search button clicked
@@ -25,11 +27,15 @@ const CurrentData = props => {
 
   return (
     <div className="container">
-      <h3 id="search-header" className="text-center">State</h3>
-      <SearchForm
-        handleFormSubmit={handleFormSubmit}
-        handleInputChange={handleInputChange}
-      />
+      <h3 className="text-center">Select State</h3>
+            <Select 
+              onChange={handleInputChange}
+            />
+            <SubmitBtn 
+                text="Submit"
+                name="submit"
+                onClick={handleFormSubmit}
+            />
       <SearchResults stateData={stateData} search={search}/>
     </div>
   );
