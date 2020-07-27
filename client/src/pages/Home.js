@@ -6,19 +6,19 @@ let tempEvents = [
     {
         id: "1",
         value: false,
-        title: "Tile of event",
+        title: "Title of event",
         date: "07/27/2020"
     },
     {
         id: "2",
         value: false,
-        title: "Tile of event",
+        title: "Title of event",
         date: "07/27/2020"
     },
     {
         id: "3",
         value: false,
-        title: "Tile of event",
+        title: "Title of event",
         date: "07/27/2020"
     }
 ]
@@ -28,7 +28,7 @@ function Home() {
         <div className="container">
             <div className="events m-3">
                 {tempEvents.map(event => (
-                    <Event id={event.id} value={event.value} title={event.title} date={event.date} />
+                    <Event key={event.id} value={event.value} title={event.title} date={event.date} />
                 ))}
             </div>
         </div>
