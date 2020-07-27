@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import Container from "../Container";
-import SearchForm from "../SearchForm";
-import SearchResults from "../SearchResults";
+import SearchForm from "../components/SearchForm";
+import SearchResults from "../components/SearchResults";
 
 const CurrentData = props => {
   const [search, setSearch] = useState();
@@ -25,14 +24,14 @@ const CurrentData = props => {
   };
 
   return (
-    <Container>
+    <div className="container">
       <h3 id="search-header" className="text-center">State</h3>
       <SearchForm
         handleFormSubmit={handleFormSubmit}
         handleInputChange={handleInputChange}
       />
       <SearchResults stateData={stateData} search={search}/>
-    </Container>
+    </div>
   );
 };
 

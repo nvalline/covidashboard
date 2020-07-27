@@ -22,7 +22,8 @@ function RegisterForm() {
     }
 
     return (
-        <form>
+        <form className="m-3">
+            <label>Create Account</label>
             <Input
                 type="email"
                 name="email"
@@ -47,7 +48,7 @@ function RegisterForm() {
                 placeholder="County"
                 onChange={handleInputChange}
             />
-            <p>Or, <a href="#">login</a></p>
+            <p>Or, <a href="/login">login</a></p>
             <SubmitBtn
                 text="Sign Up"
                 name="signUp"
