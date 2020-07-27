@@ -3,6 +3,7 @@ import React from 'react';
 export function Input(props) {
     return (
         <div className="form-group">
+            <label><strong>{props.label}</strong></label>
             <input className="form-control" {...props} />
         </div>
     );
@@ -11,7 +12,8 @@ export function Input(props) {
 export function Textarea(props) {
     return (
         <div className="form-group">
-            <textarea className="form-control" rows="20" {...props} />
+            <label><strong>{props.label}</strong></label>
+            <textarea className="form-control" rows="8" {...props} />
         </div>
     );
 }
@@ -19,7 +21,8 @@ export function Textarea(props) {
 export function Select(props) {
     return (
         <div className="form-group">
-            <select className="form-control" {...props}>
+            <select className="form-control" id="state-selector" {...props}>
+                <option value="">Select A State...</option>
                 <option value="AL">AL</option>
                 <option value="AK">AK</option>
                 <option value="AR">AR</option>
