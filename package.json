@@ -27,7 +27,8 @@
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "moment-timezone": "^0.5.31",
-    "mongoose": "^5.9.25"
+    "mongoose": "^5.9.25",
+    "passport": "^0.4.1"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
