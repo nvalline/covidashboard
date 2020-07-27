@@ -22,26 +22,29 @@ function LoginForm() {
     }
 
     return (
-        <form>
-            <Input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                onChange={handleInputChange}
-            />
-            <Input
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={handleInputChange}
-            />
-            <p>Or, <a href="#">create account</a></p>
-            <SubmitBtn
-                text="Login"
-                name="login"
-                onClick={handleFormSubmit}
-            />
-        </form>
+        <div className="mt-5">
+            <form className="mb-5">
+                <h4>Log In</h4>
+                <Input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    onChange={handleInputChange}
+                />
+                <Input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleInputChange}
+                />
+                <p>Or, <a href="/signup">create account</a></p>
+                <SubmitBtn
+                    text="Login"
+                    name="login"
+                    onClick={handleFormSubmit}
+                />
+            </form>
+        </div>
     )
 }
 
