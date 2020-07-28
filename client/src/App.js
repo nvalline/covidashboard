@@ -9,19 +9,21 @@ import NewEvent from "./pages/NewEvent";
 import ExistingEvents from "./pages/ExistingEvents";
 import CurrentData from "./pages/CurrentData";
 import TestingSites from "./pages/TestingSites";
+import ChartContainer from "./components/ChartContainer";
 
 function App() {
-  return ( 
+  return (
     <Router>
-        <Header/>
-        <Route exact path="/signup" component={SignUp}/>
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/" component={Home}/>  {/* Landing Page */}
-        <Route exact path="/new" component={NewEvent}/>
-        <Route exact path="/events" component={ExistingEvents}/>
-        <Route exact path="/current" component={CurrentData}/>
-        <Route exact path="/testing" component={TestingSites}/>
-        <Footer/>
+      <Header />
+      <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/" component={Home} /> {/* Landing Page */}
+      <Route exact path="/new" component={NewEvent} />
+      <Route exact path="/events" component={ExistingEvents} />
+      <Route exact path="/current" component={CurrentData} />
+      <Route exact path="/testing" component={TestingSites} />
+      <Route exact path="/trend" component={ChartContainer} />
+      <Footer />
     </Router>
   );
 }
