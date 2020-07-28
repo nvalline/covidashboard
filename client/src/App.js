@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Header from "./components/Header";
+import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
@@ -13,7 +13,7 @@ import TestingSites from "./pages/TestingSites";
 function App() {
   return ( 
     <Router>
-        <Header/>
+        <Nav />
         <Route exact path="/signup" component={SignUp}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/" component={Home}/>  {/* Landing Page */}
@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/events" component={ExistingEvents}/>
         <Route exact path="/current" component={CurrentData}/>
         <Route exact path="/testing" component={TestingSites}/>
-        <Footer/>
+        <Footer />
     </Router>
   );
 }
