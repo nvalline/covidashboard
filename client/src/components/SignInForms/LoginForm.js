@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
+import axios from "axios";
 
 function LoginForm() {
     const [user, setUser] = useState();
@@ -13,12 +14,17 @@ function LoginForm() {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        // remove before production
-        const submittedUser = JSON.stringify(user);
-        console.log(submittedUser)
+        const userData = user;
+        console.log(userData)
 
-        // ! Enter Passport.js functionality to verify login credentials
-
+        axios
+            .post("/api/auth/login", userData)
+            .then(res => {
+                console.log("RES:", res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (

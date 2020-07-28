@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input, Select } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
+import axios from "axios";
 
 function RegisterForm() {
     const [user, setUser] = useState();
@@ -13,12 +14,17 @@ function RegisterForm() {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        // remove before production
-        const submittedUser = JSON.stringify(user);
-        console.log(submittedUser)
+        const userData = user;
+        console.log(userData)
 
-        // ! Enter Passport.js functionality to register user
-
+        axios
+            .post("/api/auth/register", userData)
+            .then(res => {
+                console.log("RES:", res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (
