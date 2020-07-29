@@ -30,36 +30,35 @@ app.get("/api/current/:state", (req, res) => {
 })
 
 //! Connect to Database
-const MONGO_URI = "mongodb://localhost/contact_tracing_db";
+const MONGO_LOCAL_URI = require("./config/keys").MongoURI;
 
 mongoose
-    .connect(process.env.MONGODB_URI || MONGO_URI, {
+    .connect(process.env.MONGODB_URI || MONGO_LOCAL_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
         useCreateIndex: true
     })
-    .then(console.log(`MongoDB connected ${MONGO_URI}`))
+    .then(console.log(`MongoDB connected`))
     .catch(err => console.log(err));
 
 // Express Session
 app.use(
     session({
         secret: "three blind mice",
-        resave: false,
+        resave: true,
         saveUninitialized: true,
         store: new MongoStore({ mongooseConnection: mongoose.connection })
     })
 );
 
 // Passport Middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-// API Routes
+// Routes
 app.use("/api", api);
-// Authenticate route
-app.use("/api/auth", auth);
+app.use("/auth", auth);
 
 //! serve static assets
 if (process.env.NODE_ENV === 'production') {

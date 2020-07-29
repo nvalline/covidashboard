@@ -14,24 +14,7 @@ passport.use(
                 }
             }).then(dbUser => {
                 if (!dbUser) {
-                    const state = req.body.state;
-                    const county = req.body.county;
-                    const newUser = new User({ email, password, state, county });
 
-                    bcrypt.genSalt(10, (err, salt) => {
-                        bcrypt.hash(newUser.password, salt, (err, hash) => {
-                            if (err) throw err;
-                            newUser.password = hash;
-                            newUser
-                                .save()
-                                .then(user => {
-                                    return done(null, user);
-                                })
-                                .catch(err => {
-                                    return done(null, false, { message: err });
-                                });
-                        });
-                    });
                 } else {
                     bcrypt.compare(password, user.password, (err, isMatch) => {
                         if (err) throw err;

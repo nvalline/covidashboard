@@ -17,8 +17,7 @@ function LoginForm() {
         const userData = user;
         console.log(userData)
 
-        axios
-            .post("/api/auth/login", userData)
+        axios.post("/auth/login", userData)
             .then(res => {
                 console.log("RES:", res)
             })
@@ -43,7 +42,7 @@ function LoginForm() {
                     placeholder="Password"
                     onChange={handleInputChange}
                 />
-                <p>Or, <a href="/signup">create account</a></p>
+                <p>Or, <a href="/register">create account</a></p>
                 <SubmitBtn
                     text="Login"
                     name="login"

@@ -11,8 +11,14 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    state: String,
-    county: String
+    state: {
+        type: String,
+        required: true
+    },
+    county: {
+        type: String,
+        required: true
+    }
 });
 
 const User = mongoose.model("User", userSchema);
