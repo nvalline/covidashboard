@@ -6,6 +6,7 @@ const router = express.Router();
 
 const { User } = require("../models");
 
+// Register Handle
 router.post("/register", (req, res, next) => {
     const { email, password, password2, state, county } = req.body;
     let errors = [];
@@ -23,7 +24,6 @@ router.post("/register", (req, res, next) => {
     }
 
     if (errors.length > 0) {
-        console.log("ERRORS EXIST:", errors)
         res.send({ errors });
     } else {
         User.findOne({ email: email })
@@ -31,7 +31,6 @@ router.post("/register", (req, res, next) => {
                 if (user) {
                     // User exists
                     errors.push({ msg: "Email is already registered" });
-                    console.log("USER EXISTS:", errors)
                     res.send({ errors });
                 } else {
                     const newUser = new User({
@@ -60,9 +59,15 @@ router.post("/register", (req, res, next) => {
     }
 });
 
+// Login Handle
 router.post("/login", (req, res, next) => {
-    passport.authenticate("local", function (err, user, info) {
-
+    passport.authenticate("local", (err, user, info) => {
+        if (err) throw err;
+        if (user) {
+            res.send({ auth: true });
+        } else {
+            res.send(info);
+        }
     })(req, res, next);
 });
 

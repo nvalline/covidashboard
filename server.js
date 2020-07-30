@@ -7,14 +7,13 @@ const axios = require("axios");
 
 const api = require("./routes/api");
 const auth = require("./routes/auth");
-const db = require("./models");
 const passport = require("./config/passport");
 
 const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-//! Connect to Database
+// Connect to Database
 const MONGO_LOCAL_URI = require("./config/keys").MongoURI;
 
 mongoose
@@ -41,8 +40,8 @@ app.use(
 );
 
 // Passport Middleware
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use("/api", api);

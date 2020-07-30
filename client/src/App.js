@@ -17,10 +17,11 @@ function App() {
     <Router>
       <Header />
       <NotificationProvider>
+        <Route exact path="/" component={Register} />  {/* Landing Page */}
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
       </NotificationProvider>
-      <Route exact path="/" component={Home} />  {/* Landing Page */}
+      <Route exact path="/dashboard" component={Home} />
       <Route exact path="/new" component={NewEvent} />
       <Route exact path="/events" component={ExistingEvents} />
       <Route exact path="/current" component={CurrentData} />

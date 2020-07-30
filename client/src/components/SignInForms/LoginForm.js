@@ -1,13 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Input } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { NotificationContext } from "../../utils/NotificationContext";
 
+import ErrorMessages from "./ErrorMessages";
 import SuccessMessage from "./SuccessMessage";
 
 function LoginForm() {
-    const [user, setUser] = useState();
+    let history = useHistory();
+    const [user, setUser] = useState({ email: "", password: "" });
     const [notificationState, setNotificationState] = useContext(NotificationContext);
 
     const handleInputChange = (event) => {
@@ -19,15 +22,21 @@ function LoginForm() {
         event.preventDefault();
 
         const userData = user;
-        console.log(userData)
 
         axios.post("/auth/login", userData)
             .then(res => {
-                console.log("RES:", res)
+                if (res.data.auth) {
+                    history.push("/dashboard");
+                } else {
+                    const loginMsg = res.data.message;
+                    setNotificationState({ msg: loginMsg });
+                }
             })
             .catch(err => {
                 console.log(err)
             })
+
+        setUser({ email: "", password: "" });
     }
 
     return (
@@ -35,17 +44,20 @@ function LoginForm() {
             <form className="mb-5">
                 <h4>Log In</h4>
                 {notificationState.fromReg && <SuccessMessage success={notificationState} />}
+                {notificationState.msg && <ErrorMessages error={notificationState} />}
                 <Input
                     type="email"
                     name="email"
                     placeholder="Email Address"
                     onChange={handleInputChange}
+                    value={user.email}
                 />
                 <Input
                     type="password"
                     name="password"
                     placeholder="Password"
                     onChange={handleInputChange}
+                    value={user.password}
                 />
                 <p>Or, <a href="/register">create account</a></p>
                 <SubmitBtn
