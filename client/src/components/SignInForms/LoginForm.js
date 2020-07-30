@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Input } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
+import { useNotification } from "../../utils/NotificationContext";
 
-function LoginForm() {
+function LoginForm(props) {
     const [user, setUser] = useState();
+    const [success_msg, setSuccess_msg] = useContext(useNotification);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;

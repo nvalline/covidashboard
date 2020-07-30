@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Messages({ error }) {
+function ErrorMessages({ error }) {
     return (
         <div className="alert alert-warning alert-dismissible fade show" role="alert">
             {error.msg}
@@ -11,4 +11,4 @@ function Messages({ error }) {
     )
 }
 
-export default Messages;
+export default ErrorMessages;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -9,13 +9,17 @@ import NewEvent from "./pages/NewEvent";
 import ExistingEvents from "./pages/ExistingEvents";
 import CurrentData from "./pages/CurrentData";
 import TestingSites from "./pages/TestingSites";
+import { NotificationProvider } from "./utils/NotificationContext";
 
 function App() {
+
   return (
     <Router>
       <Header />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/login" component={Login} />
+      <NotificationProvider>
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
+      </NotificationProvider>
       <Route exact path="/" component={Home} />  {/* Landing Page */}
       <Route exact path="/new" component={NewEvent} />
       <Route exact path="/events" component={ExistingEvents} />

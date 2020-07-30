@@ -1,4 +1,3 @@
-const Bcrypt = require("bcryptjs");
 const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -15,20 +14,6 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-//! Coronavirus API testing
-app.get("/api/current/:state", (req, res) => {
-    axios.get("https://covidtracking.com/api/v1/states/"
-        + req.params.state
-        + "/current.json")
-        .then(response => {
-            res.json(response.data);
-        })
-        .catch(e => console.log(e));
-})
-
 //! Connect to Database
 const MONGO_LOCAL_URI = require("./config/keys").MongoURI;
 
@@ -41,6 +26,9 @@ mongoose
     })
     .then(console.log(`MongoDB connected`))
     .catch(err => console.log(err));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Express Session
 app.use(
@@ -71,6 +59,17 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, './client/public/index.html'))
     })
 }
+
+//! Coronavirus API testing
+app.get("/api/current/:state", (req, res) => {
+    axios.get("https://covidtracking.com/api/v1/states/"
+        + req.params.state
+        + "/current.json")
+        .then(response => {
+            res.json(response.data);
+        })
+        .catch(e => console.log(e));
+})
 
 app.listen(PORT, () => {
     console.log(`Server listening on PORT: ${PORT}`)

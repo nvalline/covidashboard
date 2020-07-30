@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Input, Select } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import uuid from "react-uuid";
+import { useNotification } from "../../utils/NotificationContext";
 
-import Messages from "./Messages";
+import ErrorMessages from "./ErrorMessages";
 
 function RegisterForm() {
     let history = useHistory();
     const [user, setUser] = useState();
     const [errors, setErrors] = useState([]);
     const [hasErrors, SetHasErrors] = useState(false);
+    const [success_msg, setSuccess_msg] = useContext(useNotification);
 
     useEffect(() => {
         if (errors.length > 0) {
@@ -34,6 +36,7 @@ function RegisterForm() {
                 const errors = res.data.errors;
 
                 if (errors === undefined) {
+                    setSuccess_msg({ msg: "You are now registered and may log in" });
                     history.push("/login");
                 } else if (errors.length > 0) {
                     setErrors(errors);
@@ -48,7 +51,7 @@ function RegisterForm() {
     return (
         <form className="m-3">
             <label>Create Account</label>
-            {hasErrors ? errors.map(error => <Messages error={error} key={uuid()} />) : ''}
+            {hasErrors ? errors.map(error => <ErrorMessages error={error} key={uuid()} />) : ''}
             <Input
                 type="email"
                 name="email"

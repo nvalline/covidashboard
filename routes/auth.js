@@ -50,7 +50,7 @@ router.post("/register", (req, res, next) => {
                             // Save new user
                             newUser.save()
                                 .then(user => {
-                                    res.send("200");
+                                    res.send({ success_msg: "You are now registered and may now log in" });
                                 })
                                 .catch(err => console.log(err));
                         });
