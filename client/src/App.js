@@ -9,9 +9,10 @@ import NewEvent from "./pages/NewEvent";
 import ExistingEvents from "./pages/ExistingEvents";
 import CurrentData from "./pages/CurrentData";
 import TestingSites from "./pages/TestingSites";
+import ChartContainer from "./components/ChartContainer";
 
 function App() {
-  return ( 
+  return (
     <Router>
         <Nav />
         <Route exact path="/signup" component={SignUp}/>
