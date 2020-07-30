@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Input } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
 
@@ -37,7 +38,7 @@ function LoginForm() {
                     placeholder="Password"
                     onChange={handleInputChange}
                 />
-                <p>Or, <a href="/signup">create account</a></p>
+                <p>Or, <Link to={'/signup'}>create account</Link></p>
                 <SubmitBtn
                     text="Login"
                     name="login"

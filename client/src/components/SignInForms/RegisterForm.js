@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Input, Select } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
 
@@ -48,7 +49,7 @@ function RegisterForm() {
                 placeholder="County"
                 onChange={handleInputChange}
             />
-            <p>Or, <a href="/login">login</a></p>
+            <p>Or, <Link to={'/login'}>log in</Link></p>
             <SubmitBtn
                 text="Sign Up"
                 name="signUp"
