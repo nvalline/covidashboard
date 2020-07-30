@@ -2,11 +2,13 @@ import React, { useState, useContext } from "react";
 import { Input } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
-import { useNotification } from "../../utils/NotificationContext";
+import { NotificationContext } from "../../utils/NotificationContext";
 
-function LoginForm(props) {
+import SuccessMessage from "./SuccessMessage";
+
+function LoginForm() {
     const [user, setUser] = useState();
-    const [success_msg, setSuccess_msg] = useContext(useNotification);
+    const [notificationState, setNotificationState] = useContext(NotificationContext);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -32,6 +34,7 @@ function LoginForm(props) {
         <div className="mt-5">
             <form className="mb-5">
                 <h4>Log In</h4>
+                {notificationState.fromReg && <SuccessMessage success={notificationState} />}
                 <Input
                     type="email"
                     name="email"

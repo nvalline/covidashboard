@@ -1,17 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
-const NotificationContext = React.createContext();
+const NotificationContext = React.createContext([{}, () => { }]);
 
-export function useNotification() {
-    return useContext(NotificationContext);
-};
-
-export function NotificationProvider({ children }) {
-    const [notificationState, setNotificationState] = useState();
+const NotificationProvider = ({ children }) => {
+    const [notificationState, setNotificationState] = useState({});
 
     return (
-        <NotificationContext.Provider value={notificationState, setNotificationState}>
+        <NotificationContext.Provider value={[notificationState, setNotificationState]}>
             {children}
         </NotificationContext.Provider>
     )
 };
+
+export { NotificationContext, NotificationProvider };
