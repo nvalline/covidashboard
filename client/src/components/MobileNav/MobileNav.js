@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import "./nav.css";
+import "./style.css";
 
-function Nav() {
+function MobileNav() {
 
     return (
-        <nav className="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar fixed-bottom navbar-expand-lg">
             <div className="row">
                 <div className="col">
                     <Link to={'/login'} className="nav-link"><i className="fa fa-sign-in"></i></Link>
@@ -32,4 +32,4 @@ function Nav() {
     )
 }
 
-export default Nav;
+export default MobileNav;
