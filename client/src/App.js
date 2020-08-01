@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Nav from "./components/Nav/Nav";
+import DesktopNav from "./components/DesktopNav/DesktopNav";
+import MobileNav from "./components/MobileNav/MobileNav";
 import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
@@ -9,12 +10,13 @@ import NewEvent from "./pages/NewEvent";
 import ExistingEvents from "./pages/ExistingEvents";
 import CurrentData from "./pages/CurrentData";
 import TestingSites from "./pages/TestingSites";
-import ChartContainer from "./components/ChartContainer";
+
+console.log(window)
 
 function App() {
   return (
     <Router>
-        <Nav />
+        {window.innerWidth > 1080 ? <DesktopNav /> : <MobileNav />}
         <Route exact path="/signup" component={SignUp}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/" component={Home}/>  {/* Landing Page */}
