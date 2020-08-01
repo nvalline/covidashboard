@@ -6,12 +6,12 @@ function ExistingEvents() {
   // Setting our component's initial state
   const [events, setEvents] = useState([]);
 
-  // Load all books and store them with setEvents
+  // Load all events and store them with setEvents
   useEffect(() => {
     loadEvents();
   }, []);
 
-  // Loads all books and sets them to books
+  // Loads all events and sets them to events
   function loadEvents() {
     API.getEvents()
       .then(res => {
@@ -21,7 +21,7 @@ function ExistingEvents() {
       .catch(err => console.log(err));
   }
 
-  // Deletes a book from the database with a given id, then reloads books from the db
+  // Deletes an evnt from the database with a given id, then reloads events from the db
   function deleteEvent(id) {
     API.deleteEvent(id)
       .then(res => loadEvents())
@@ -30,17 +30,19 @@ function ExistingEvents() {
 
   return (
     <div className="container">
+      <h2 className="text-center mt-3">My Tracked Events</h2>
       {events.map(event => (
         <Event
           key={event._id}
           title={event.title}
           date={event.date}
+          notes={event.notes}
           button={() => (
             <button
               onClick={() => deleteEvent(event._id)}
-              className="btn btn-danger text-white float-right"
+              className="btn btn-danger text-white float-right ml-3" style={{height:"40px"}}
             >
-              Delete
+              <i className="fa fa-trash"></i>
             </button>
           )}
         />
