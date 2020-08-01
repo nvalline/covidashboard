@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Nav from "./components/Nav/Nav";
+import DesktopNav from "./components/DesktopNav/DesktopNav";
+import MobileNav from "./components/MobileNav/MobileNav";
 import Footer from "./components/Footer";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -13,11 +14,13 @@ import { NotificationProvider } from "./utils/NotificationContext";
 import ChartContainer from "./components/ChartContainer";
 
 function App() {
+  console.log(window)
 
   return (
     <NotificationProvider>
       <Router>
-        <Nav />
+        {window.innerWidth > 1080 ? <DesktopNav /> : <MobileNav />}
+        {/* <Nav /> */}
         <Route exact path="/" component={Register} />  {/* Landing Page */}
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />

@@ -17,8 +17,9 @@ function TestingSites() {
     };
 
     return (
-        <div className="container">
-            <h3 className="text-center">Select State</h3>
+        <div className="container text-center">
+            <h1 className="mb-5">Find Testing Locations</h1>
+            <h3>Select State</h3>
             <Select />
             <SubmitBtn 
                 text="Submit"

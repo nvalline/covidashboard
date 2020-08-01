@@ -4,6 +4,10 @@
     justify-content: center;
 }
 
+.col {
+    width: 50px;
+}
+
 .fa {
     display: flex;
     color: white;

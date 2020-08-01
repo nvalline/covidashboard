@@ -1,0 +1,26 @@
+.navbar {
+    background-color: #75ABDE;
+}
+
+.navbar a {
+    color: white;
+}
+
+.fa {
+    padding: 0;
+    color: black;
+}
+
+.navbar-brand {
+    padding-right: 25px !important;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+a.nav-link {
+    padding-left: 0 !important;
+    padding-right: 25px !important;
+}
