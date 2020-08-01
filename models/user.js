@@ -5,18 +5,20 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
-  },
-  email_is_verified: {
-    type: Boolean,
-    default: false,
+    unique: true
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
-  state: String,
-  county: String,
+  state: {
+    type: String,
+    required: true
+  },
+  county: {
+    type: String,
+    required: true
+  },
   events: [{ type: Schema.Types.ObjectId, ref: "Events" }],
 });
 

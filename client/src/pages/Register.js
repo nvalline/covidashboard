@@ -2,7 +2,7 @@ import React from "react";
 import RegisterForm from "../components/SignInForms/RegisterForm";
 import About from "../components/About";
 
-function SignUp() {
+function Register() {
     return (
         <div className="container">
             <RegisterForm />
@@ -12,4 +12,4 @@ function SignUp() {
     )
 }
 
-export default SignUp;
+export default Register;
