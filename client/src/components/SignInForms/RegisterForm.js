@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Input, Select } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
@@ -89,7 +90,7 @@ function RegisterForm() {
                 onChange={handleInputChange}
                 value={user.county}
             />
-            <p>Or, <a href="/login">login</a></p>
+            <p>Or, <Link to={'/login'}>log in</Link></p>
             <SubmitBtn
                 text="Sign Up"
                 name="signUp"

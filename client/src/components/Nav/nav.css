@@ -1,0 +1,23 @@
+.navbar {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.fa {
+    display: flex;
+    color: white;
+}
+
+.nav-item {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar i {
+    width: 30px !important;
+}
+
+.nav-link {
+    padding: 0;
+}

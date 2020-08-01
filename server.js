@@ -47,16 +47,21 @@ app.use(passport.session());
 app.use("/api", api);
 app.use("/auth", auth);
 
+const routes = require("./routes");
+app.use(routes);
+
 //! serve static assets
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('./build'));
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("./build"));
     // server index.html if `/about` reached -> assets served through `express.static`
-    app.get('*', (req, res) => res.sendFile(path.join(__dirname, './build/index.html')));
+    app.get("*", (req, res) =>
+        res.sendFile(path.join(__dirname, "./build/index.html"))
+    );
 } else {
     //! Home Route
     app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, './client/public/index.html'))
-    })
+        res.sendFile(path.join(__dirname, "./client/public/index.html"));
+    });
 }
 
 //! Coronavirus API testing
@@ -71,5 +76,5 @@ app.get("/api/current/:state", (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Server listening on PORT: ${PORT}`)
+    console.log(`Server listening on PORT: ${PORT}`);
 });

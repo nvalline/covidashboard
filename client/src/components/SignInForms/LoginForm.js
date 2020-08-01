@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Input } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
@@ -59,7 +60,7 @@ function LoginForm() {
                     onChange={handleInputChange}
                     value={user.password}
                 />
-                <p>Or, <a href="/register">create account</a></p>
+                <p>Or, <Link to="/register">create account</Link></p>
                 <SubmitBtn
                     text="Login"
                     name="login"
