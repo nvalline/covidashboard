@@ -64,17 +64,6 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-//! Coronavirus API testing
-app.get("/api/current/:state", (req, res) => {
-    axios.get("https://covidtracking.com/api/v1/states/"
-        + req.params.state
-        + "/current.json")
-        .then(response => {
-            res.json(response.data);
-        })
-        .catch(e => console.log(e));
-})
-
 app.listen(PORT, () => {
     console.log(`Server listening on PORT: ${PORT}`);
 });
