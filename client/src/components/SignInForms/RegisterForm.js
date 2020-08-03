@@ -10,11 +10,12 @@ import { NotificationContext } from "../../utils/NotificationContext";
 import ErrorMessages from "./ErrorMessages";
 
 function RegisterForm() {
+    const [notificationState, setNotificationState] = useContext(NotificationContext);
+
     let history = useHistory();
     const [user, setUser] = useState({ email: "", password: "", password2: "", state: "", county: "" });
     const [errors, setErrors] = useState([]);
     const [hasErrors, SetHasErrors] = useState(false);
-    const [notificationState, setNotificationState] = useContext(NotificationContext);
 
     useEffect(() => {
         if (errors.length > 0) {
