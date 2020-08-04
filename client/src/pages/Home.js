@@ -27,9 +27,10 @@ function Home() {
     return (
         <div className="container">
             <div className="events m-3">
-                {tempEvents.map(event => (
+                <h1>User Dashboard</h1>
+                {/* {tempEvents.map(event => (
                     <Event key={event.id} value={event.value} title={event.title} date={event.date} />
-                ))}
+                ))} */}
             </div>
         </div>
     )

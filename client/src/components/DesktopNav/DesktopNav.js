@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../utils/AuthContext";
+
 import "./style.css";
 
-function DesktopNav() {
+function DesktopNav({ handleLogout }) {
+    const [authState, setAuthState] = useContext(AuthContext);
 
     return (
         <nav className="navbar navbar-expand-lg" >
             <a className="navbar-brand" href="/">
-                    COVID-19 TRACKER
+                COVID-19 TRACKER
             </a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -20,7 +23,9 @@ function DesktopNav() {
                     </li>
                     <li className="nav-item">
                         <i className="fa fa-sign-in"></i>
-                        <Link to={'/login'} className="nav-link">Login/SignUp</Link>
+                        {authState.isAuthenticated === false ?
+                            <Link to={'/login'} className="nav-link">Login/SignUp</Link> :
+                            <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}>Logout</Link>}
                     </li>
                     <li className="nav-item">
                         <i className="fa fa-plus"></i>
