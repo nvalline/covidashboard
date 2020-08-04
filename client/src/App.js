@@ -17,6 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import ChartContainer from "./components/ChartContainer";
 
 import "react-toastify/dist/ReactToastify.css";
+import "./toast.css";
 
 toast.configure();
 
