@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import DesktopNav from "./components/DesktopNav/DesktopNav";
 import MobileNav from "./components/MobileNav/MobileNav";
@@ -23,6 +23,8 @@ toast.configure();
 function App() {
   const [authState, setAuthState] = useContext(AuthContext);
   console.log("AUTH STATE:", authState)
+
+
 
   const handleLogout = (event) => {
     axios.get("/auth/logout")
