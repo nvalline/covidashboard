@@ -10,11 +10,10 @@ import NewEvent from "./pages/NewEvent";
 import ExistingEvents from "./pages/ExistingEvents";
 import CurrentData from "./pages/CurrentData";
 import TestingSites from "./pages/TestingSites";
-import { NotificationProvider, NotificationContext } from "./utils/NotificationContext";
+import { NotificationProvider } from "./utils/NotificationContext";
 import { AuthContext } from "./utils/AuthContext";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import ChartContainer from "./components/ChartContainer";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./toast.css";
@@ -23,7 +22,7 @@ toast.configure();
 
 function App() {
   const [authState, setAuthState] = useContext(AuthContext);
-  const [notificationState, setNotificationState] = useContext(NotificationContext);
+  console.log("AUTH STATE:", authState)
 
   const handleLogout = (event) => {
     axios.get("/auth/logout")
