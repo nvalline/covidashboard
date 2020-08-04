@@ -12,7 +12,7 @@ import CurrentData from "./pages/CurrentData";
 import TestingSites from "./pages/TestingSites";
 import { NotificationProvider } from "./utils/NotificationContext";
 import { AuthContext } from "./utils/AuthContext";
-import ChartContainer from "./components/ChartContainer";
+// import ChartContainer from "./components/ChartContainer";
 
 function App() {
   const [authState, setAuthState] = useContext(AuthContext);

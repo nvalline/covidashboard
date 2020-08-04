@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
@@ -32,7 +32,7 @@ function LoginForm() {
                 if (res.data.auth) {
                     const newState = { isAuthenticated: true };
                     setAuthState(newState);
-                    history.push("/dashboard");
+                    history.push("/events");
                 } else {
                     const loginMsg = res.data.message;
                     setNotificationState({ msg: loginMsg });
