@@ -5,14 +5,17 @@ import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { NotificationContext } from "../../utils/NotificationContext";
+import { AuthContext } from "../../utils/AuthContext";
 
 import ErrorMessages from "./ErrorMessages";
 import SuccessMessage from "./SuccessMessage";
 
 function LoginForm() {
+    const [authState, setAuthState] = useContext(AuthContext);
+    const [notificationState, setNotificationState] = useContext(NotificationContext);
+
     let history = useHistory();
     const [user, setUser] = useState({ email: "", password: "" });
-    const [notificationState, setNotificationState] = useContext(NotificationContext);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -27,6 +30,8 @@ function LoginForm() {
         axios.post("/auth/login", userData)
             .then(res => {
                 if (res.data.auth) {
+                    const newState = { isAuthenticated: true };
+                    setAuthState(newState);
                     history.push("/dashboard");
                 } else {
                     const loginMsg = res.data.message;

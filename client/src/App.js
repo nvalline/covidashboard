@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import DesktopNav from "./components/DesktopNav/DesktopNav";
 import MobileNav from "./components/MobileNav/MobileNav";
 import Footer from "./components/Footer";
@@ -11,10 +11,11 @@ import ExistingEvents from "./pages/ExistingEvents";
 import CurrentData from "./pages/CurrentData";
 import TestingSites from "./pages/TestingSites";
 import { NotificationProvider } from "./utils/NotificationContext";
+import { AuthContext } from "./utils/AuthContext";
 import ChartContainer from "./components/ChartContainer";
 
 function App() {
-  console.log(window)
+  const [authState, setAuthState] = useContext(AuthContext);
 
   return (
     <NotificationProvider>
@@ -24,11 +25,21 @@ function App() {
         <Route exact path="/" component={Register} />  {/* Landing Page */}
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/dashboard" component={Home} />
-        <Route exact path="/new" component={NewEvent} />
-        <Route exact path="/events" component={ExistingEvents} />
-        <Route exact path="/current" component={CurrentData} />
-        <Route exact path="/testing" component={TestingSites} />
+        <Route exact path="/dashboard">
+          {authState.isAuthenticated === true ? <Home /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/new">
+          {authState.isAuthenticated === true ? <NewEvent /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/events">
+          {authState.isAuthenticated === true ? <ExistingEvents /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/current">
+          {authState.isAuthenticated === true ? <CurrentData /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/testing">
+          {authState.isAuthenticated === true ? <TestingSites /> : <Redirect to="/login" />}
+        </Route>
         <Footer />
       </Router>
     </NotificationProvider>
