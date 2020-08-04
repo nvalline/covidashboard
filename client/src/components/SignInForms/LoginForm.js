@@ -32,7 +32,7 @@ function LoginForm() {
                 if (res.data.auth) {
                     const newState = { isAuthenticated: true };
                     setAuthState(newState);
-                    history.push("/events");
+                    history.push("/dashboard");
                 } else {
                     const loginMsg = res.data.message;
                     setNotificationState({ msg: loginMsg });
