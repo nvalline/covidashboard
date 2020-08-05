@@ -30,9 +30,12 @@ function LoginForm() {
         axios.post("/auth/login", userData)
             .then(res => {
                 if (res.data.auth) {
-                    const newState = { isAuthenticated: true };
+                    const newState = { isAuthenticated: true, userId: res.data.userId };
                     setAuthState(newState);
                     history.push("/dashboard");
+                    const userId = res.data.userId;
+                    localStorage.setItem("isAuthenticated", true);
+                    localStorage.setItem("userId", userId);
                 } else {
                     const loginMsg = res.data.message;
                     setNotificationState({ msg: loginMsg });

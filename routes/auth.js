@@ -64,7 +64,7 @@ router.post("/login", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
         if (err) throw err;
         if (user) {
-            res.send({ auth: true });
+            res.send({ auth: true, userId: user.id });
         } else {
             res.send(info);
         }
