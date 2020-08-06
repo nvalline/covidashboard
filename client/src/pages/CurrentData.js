@@ -3,7 +3,6 @@ import { AuthContext } from "../utils/AuthContext";
 import axios from "axios";
 import SearchResults from "../components/SearchResults";
 import API from "../utils/API";
-import SubmitBtn from "../components/SubmitBtn";
 
 const CurrentData = () => {
   const [stateData, setStateData] = useState({});
