@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../utils/AuthContext";
+
 import "./style.css";
 
-function MobileNav() {
+function MobileNav({ handleLogout }) {
+    const [authState, setAuthState] = useContext(AuthContext);
 
     return (
         <nav className="navbar fixed-bottom navbar-expand-lg">
             <div className="row">
                 <div className="col">
-                    <Link to={'/login'} className="nav-link"><i className="fa fa-sign-in"></i></Link>
+                    {authState.isAuthenticated === false ?
+                        <Link to={'/login'} className="nav-link"><i className="fa fa-sign-in"></i></Link> :
+                        <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}><i className="fa fa-sign-out"></i></Link>}
                 </div>
                 <div className="col">
                     <Link to={'/'} className="nav-link"><i className="fa fa-home"></i></Link>

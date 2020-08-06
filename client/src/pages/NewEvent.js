@@ -53,9 +53,8 @@ function NewEvent() {
         />
         <Input
           label="Date"
-          type="date"
+          type="datetime-local"
           name="date"
-          placeholder="Date of Event..."
           onChange={handleInputChange}
         />
         <Textarea
