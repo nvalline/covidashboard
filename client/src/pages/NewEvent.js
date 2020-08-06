@@ -7,7 +7,7 @@ import API from "../utils/API";
 import moment from "moment-timezone";
 
 function NewEvent() {
-  const [authState, setAuthState] = useContext(AuthContext);
+  const [authState] = useContext(AuthContext);
 
   // Setting our component's initial state
   const [formObject, setFormObject] = useState({});

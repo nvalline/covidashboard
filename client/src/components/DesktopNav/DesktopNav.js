@@ -12,20 +12,14 @@ function DesktopNav({ handleLogout }) {
             <a className="navbar-brand" href="/">
                 COVID-19 TRACKER
             </a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
+            <li className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i className="fa fa-bars"></i>
+            </li>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <i className="fa fa-home"></i>
                         <Link to={'/'} className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <i className="fa fa-sign-in"></i>
-                        {authState.isAuthenticated === false ?
-                            <Link to={'/login'} className="nav-link">Login/SignUp</Link> :
-                            <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}>Logout</Link>}
                     </li>
                     <li className="nav-item">
                         <i className="fa fa-plus"></i>
@@ -44,6 +38,12 @@ function DesktopNav({ handleLogout }) {
                         <Link to={'/testing'} className="nav-link">Testing Locations</Link>
                     </li>
                 </ul>
+            </div>
+            <div className="nav-item ml-auto">
+                <i className="fa fa-sign-in"></i>
+                {authState.isAuthenticated === false ?
+                    <Link to={'/login'} className="nav-link">Login/SignUp</Link> :
+                    <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}>Logout</Link>}
             </div>
         </nav>
     )

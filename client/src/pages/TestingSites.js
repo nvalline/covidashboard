@@ -1,32 +1,29 @@
-import React, { useState } from "react";
-import { Select } from "../components/FormElements";
-import SubmitBtn from "../components/SubmitBtn";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../utils/AuthContext";
 import Sites from "../components/Sites";
 import testingSites from "../components/testingSites.json";
+import API from "../utils/API";
 
 function TestingSites() {
-    const [state, setState] = useState();
+    const [userState, setUserState] = useState();
     const [sites, setSites] = useState();
+    const [authState] = useContext(AuthContext);
 
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        
-        let selector = document.getElementById("state-selector");
-        setState(selector.options[selector.selectedIndex].value);
-        setSites(testingSites[selector.options[selector.selectedIndex].value].sites);
-    };
+    useEffect(() => {
+        API.getUser(authState.userId)
+          .then(res => {
+            let state = res.data.state;
+            setSites(testingSites[state].sites)
+            state = state.toUpperCase();
+            setUserState(state);
+          })
+          .catch(err => console.log(err));
+      }, [])
 
     return (
         <div className="container text-center">
-            <h1 className="mb-5">Find Testing Locations</h1>
-            <h3>Select State</h3>
-            <Select />
-            <SubmitBtn 
-                text="Submit"
-                name="submit"
-                onClick={handleFormSubmit}
-            />
-            <Sites state={state} sites={sites} />
+            <p className="mt-5">Click the link below to find official testing locations for your state.</p>
+            <Sites state={userState} sites={sites} />
         </div>
     )
 }

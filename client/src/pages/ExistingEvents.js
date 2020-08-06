@@ -7,7 +7,7 @@ import API from "../utils/API";
 function ExistingEvents() {
   // Setting our component's initial state
   const [events, setEvents] = useState([]);
-  const [authState, setAuthState] = useContext(AuthContext);
+  const [authState] = useContext(AuthContext);
 
   // Load all events and store them with setEvents
   useEffect(() => {
@@ -45,7 +45,7 @@ function ExistingEvents() {
         <div className="text-center mb-5">
           <p>No events added yet.</p>
           <br></br>
-          <Link to="/new" className="btn btn-primary">
+          <Link to="/new" className="btn btn-lg btn-primary">
             + Add A New Event
           </Link>
         </div>
