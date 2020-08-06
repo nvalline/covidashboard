@@ -1,27 +1,27 @@
 import React from "react";
-import Event from "../components/Event";
+// import Event from "../components/Event";
 
 // event placeholders / replace these with database events
-let tempEvents = [
-  {
-    id: "1",
-    value: false,
-    title: "Title of event",
-    date: "07/27/2020",
-  },
-  {
-    id: "2",
-    value: false,
-    title: "Title of event",
-    date: "07/27/2020",
-  },
-  {
-    id: "3",
-    value: false,
-    title: "Title of event",
-    date: "07/27/2020",
-  },
-];
+// let tempEvents = [
+//   {
+//     id: "1",
+//     value: false,
+//     title: "Title of event",
+//     date: "07/27/2020",
+//   },
+//   {
+//     id: "2",
+//     value: false,
+//     title: "Title of event",
+//     date: "07/27/2020",
+//   },
+//   {
+//     id: "3",
+//     value: false,
+//     title: "Title of event",
+//     date: "07/27/2020",
+//   },
+// ];
 
 function Home() {
   return (

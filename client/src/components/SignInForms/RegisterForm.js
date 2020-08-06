@@ -10,7 +10,7 @@ import { NotificationContext } from "../../utils/NotificationContext";
 import ErrorMessages from "./ErrorMessages";
 
 function RegisterForm() {
-    const [notificationState, setNotificationState] = useContext(NotificationContext);
+    const [setNotificationState] = useContext(NotificationContext);
 
     let history = useHistory();
     const [user, setUser] = useState({ email: "", password: "", password2: "", state: "", county: "" });

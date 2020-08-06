@@ -5,10 +5,10 @@ import { AuthContext } from "../../utils/AuthContext";
 import "./style.css";
 
 function MobileNav({ handleLogout }) {
-    const [authState, setAuthState] = useContext(AuthContext);
+    const [authState] = useContext(AuthContext);
 
     return (
-        <nav className="navbar fixed-bottom navbar-expand-lg">
+        <nav className="navbar-ft fixed-bottom navbar-expand-lg">
             <div className="row">
                 <div className="col">
                     {authState.isAuthenticated === false ?

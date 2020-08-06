@@ -21,7 +21,7 @@ const CurrentData = () => {
         setUserState(state);
       })
       .catch(err => console.log(err));
-  }, [])
+  }, [authState.userId])
 
   return (
     <div className="container-fluid">

@@ -5,7 +5,7 @@ import { AuthContext } from "../../utils/AuthContext";
 import "./style.css";
 
 function DesktopNav({ handleLogout }) {
-    const [authState, setAuthState] = useContext(AuthContext);
+    const [authState] = useContext(AuthContext);
 
     return (
         <nav className="navbar navbar-expand-lg" >
@@ -18,32 +18,32 @@ function DesktopNav({ handleLogout }) {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <i className="fa fa-home"></i>
-                        <Link to={'/'} className="nav-link">Home</Link>
+                        
+                        <Link to={'/'} className="nav-link"><i className="fa fa-home"></i> Home</Link>
                     </li>
                     <li className="nav-item">
-                        <i className="fa fa-plus"></i>
-                        <Link to={"/new"} className="nav-link">New Event</Link>
+                        
+                        <Link to={"/new"} className="nav-link"><i className="fa fa-plus"></i> New Event</Link>
                     </li>
                     <li className="nav-item">
-                        <i className="fa fa-calendar-o"></i>
-                        <Link to={"/events"} className="nav-link">My Events</Link>
+                        
+                        <Link to={"/events"} className="nav-link"><i className="fa fa-calendar-o"></i> My Events</Link>
                     </li>
                     <li className="nav-item">
-                        <i className="fa fa-line-chart"></i>
-                        <Link to={'/current'} className="nav-link">Current Data</Link>
+                        
+                        <Link to={'/current'} className="nav-link"><i className="fa fa-line-chart"></i> Current Data</Link>
                     </li>
                     <li className="nav-item">
-                        <i className="fa fa-map-marker"></i>
-                        <Link to={'/testing'} className="nav-link">Testing Locations</Link>
+                        
+                        <Link to={'/testing'} className="nav-link"><i className="fa fa-map-marker"></i> Testing Locations</Link>
                     </li>
                 </ul>
-            </div>
-            <div className="nav-item ml-auto">
-                <i className="fa fa-sign-in"></i>
-                {authState.isAuthenticated === false ?
-                    <Link to={'/login'} className="nav-link">Login/SignUp</Link> :
-                    <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}>Logout</Link>}
+                <div className="nav-item ml-auto">
+                    
+                    {authState.isAuthenticated === false ?
+                        <Link to={'/login'} className="nav-link"><i className="fa fa-sign-in"></i> Login/SignUp</Link> :
+                        <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}><i className="fa fa-sign-in"></i> Logout</Link>}
+                </div>
             </div>
         </nav>
     )

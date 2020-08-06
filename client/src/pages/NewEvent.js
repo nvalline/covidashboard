@@ -6,6 +6,8 @@ import SubmitBtn from "../components/SubmitBtn";
 import API from "../utils/API";
 import moment from "moment-timezone";
 
+console.log(moment().add(14, "d")._d);
+
 function NewEvent() {
   const [authState] = useContext(AuthContext);
 
@@ -28,7 +30,7 @@ function NewEvent() {
         date: formObject.date,
         title: formObject.title,
         notes: formObject.notes,
-        noticeDate: moment(formObject.date).add(14, "d"),
+        noticeDate: moment(formObject.date).add(14, "d")._d,
         user: authState.userId,
       })
         .then(res => {

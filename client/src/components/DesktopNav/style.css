@@ -11,16 +11,29 @@
     color: black;
 }
 
-.navbar-brand {
-    padding-right: 25px !important;
-}
-
 .nav-item {
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
+}
+
+#navbarNav {
+    margin-left: 25px;
 }
 
 a.nav-link {
+    display: flex;
+    align-items: center;
     padding-left: 0 !important;
-    padding-right: 25px !important;
+    margin-right: 25px !important;
+}
+
+a.nav-link:hover, a.nav-link:hover i {
+    color: #CF3232;
+}
+
+@media only screen and (max-width: 1079px) {
+    #navbarNav {
+        margin-left: 0;
+    }
 }

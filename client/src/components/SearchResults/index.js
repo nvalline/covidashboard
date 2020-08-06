@@ -4,10 +4,6 @@ import moment from "moment-timezone";
 
 function SearchResults(props) {  
 
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
   return (
     <div className="text-center">
       <div className="text-center">
