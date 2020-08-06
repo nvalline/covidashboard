@@ -5,8 +5,7 @@ import SearchResults from "../components/SearchResults";
 import API from "../utils/API";
 import SubmitBtn from "../components/SubmitBtn";
 
-const CurrentData = props => {
-  const [search, setSearch] = useState();
+const CurrentData = () => {
   const [stateData, setStateData] = useState({});
   const [authState, setAuthState] = useContext(AuthContext);
   const [userState, setUserState] = useState();
@@ -22,7 +21,6 @@ const CurrentData = props => {
   function handleFormSubmit() {
     axios.get(`/api/current/${userState}`)
       .then(res2 => {
-        console.log(res2.data);
         setStateData(res2.data);
       })
       .catch(e => console.log(e));
