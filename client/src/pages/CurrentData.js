@@ -12,24 +12,21 @@ const CurrentData = () => {
   useEffect(() => {
     API.getUser(authState.userId)
       .then(res => {
-        setUserState(res.data.state.toLowerCase());
+        let state = res.data.state.toLowerCase();
+        axios.get(`/api/current/${state}`)
+          .then(res2 => {
+            setStateData(res2.data);
+          })
+        state = state.toUpperCase();
+        setUserState(state);
       })
       .catch(err => console.log(err));
   }, [])
 
-  function handleFormSubmit() {
-    axios.get(`/api/current/${userState}`)
-      .then(res2 => {
-        setStateData(res2.data);
-      })
-      .catch(e => console.log(e));
-  }
-
   return (
     <div className="container">
       <h3 className="text-center">Current Data for {userState}</h3>
-      {userState === null ? "" : handleFormSubmit()}
-      <SearchResults stateData={stateData} search={userState}/>
+      <SearchResults stateData={stateData} />
     </div>
   );
 };
