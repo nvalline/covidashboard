@@ -41,8 +41,8 @@ function DesktopNav({ handleLogout }) {
                 <div className="nav-item ml-auto">
                     
                     {authState.isAuthenticated === false ?
-                        <Link to={'/login'} className="nav-link"><i className="fa fa-sign-in"></i> Login/SignUp</Link> :
-                        <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}><i className="fa fa-sign-in"></i> Logout</Link>}
+                        <Link to={'/login'} className="nav-link"><i className="fa fa-sign-in" data-toggle="collapse"></i> Login/SignUp</Link> :
+                        <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()} data-toggle="collapse"><i className="fa fa-sign-in"></i> Logout</Link>}
                 </div>
             </div>
         </nav>

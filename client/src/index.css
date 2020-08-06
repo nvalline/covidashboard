@@ -9,3 +9,57 @@ html, body, #root {
   height: 100%;
 }
 
+body {
+  background-image: url('/img/coronavirus.png');
+  background-size: 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.btn-primary {
+  background-color: #75ABDE;
+  border: #75ABDE
+}
+
+.btn-primary:hover {
+  background-color: #CF3232;
+  border: #CF3232
+}
+
+.section {
+  border: 1px solid #75ABDE;
+  border-radius: 10px;
+  margin: 20px;
+  min-height: 350px;
+}
+
+.section-title {
+  margin-top: 10px;
+}
+
+.dash-event {
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.dash-event-title {
+  display: inline;
+  background-color: #EEEEEE;
+}
+
+.dash-event-date {
+  background-color: #D0D0D0;
+  height: 100%;
+}
+
+@media only screen and (max-width: 1079px) {
+  body {
+    background-image: url('/img/coronavirus.png');
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+}
