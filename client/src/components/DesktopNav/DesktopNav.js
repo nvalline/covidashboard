@@ -22,12 +22,6 @@ function DesktopNav({ handleLogout }) {
                         <Link to={'/'} className="nav-link">Home</Link>
                     </li>
                     <li className="nav-item">
-                        <i className="fa fa-sign-in"></i>
-                        {authState.isAuthenticated === false ?
-                            <Link to={'/login'} className="nav-link">Login/SignUp</Link> :
-                            <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}>Logout</Link>}
-                    </li>
-                    <li className="nav-item">
                         <i className="fa fa-plus"></i>
                         <Link to={"/new"} className="nav-link">New Event</Link>
                     </li>
@@ -44,6 +38,12 @@ function DesktopNav({ handleLogout }) {
                         <Link to={'/testing'} className="nav-link">Testing Locations</Link>
                     </li>
                 </ul>
+            </div>
+            <div className="nav-item ml-auto">
+                <i className="fa fa-sign-in"></i>
+                {authState.isAuthenticated === false ?
+                    <Link to={'/login'} className="nav-link">Login/SignUp</Link> :
+                    <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}>Logout</Link>}
             </div>
         </nav>
     )

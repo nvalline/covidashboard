@@ -5,8 +5,10 @@ export default {
   getEvents: function () {
     return axios.get("/api/events");
   },
+  getUser: function (id) {
+    return axios.get("/api/user/get/" + id);
+  },
   getEventsByUser: function (id) {
-    console.log("api id", id);
     return axios.get("/api/user/" + id);
   },
   // Gets the event with the given id
@@ -19,7 +21,6 @@ export default {
   },
   // Saves a event to the database
   saveEvent: function (eventData) {
-    console.log("eventdata", eventData);
     return axios.post("/api/events", eventData);
   },
 };

@@ -7,7 +7,7 @@ import API from "../utils/API";
 function ExistingEvents() {
   // Setting our component's initial state
   const [events, setEvents] = useState([]);
-  const [authState, setAuthState] = useContext(AuthContext);
+  const [authState] = useContext(AuthContext);
 
   // Load all events and store them with setEvents
   useEffect(() => {

@@ -1,42 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from "../utils/AuthContext";
 import axios from "axios";
-import { Select } from "../components/FormElements";
-import SubmitBtn from "../components/SubmitBtn";
 import SearchResults from "../components/SearchResults";
+import API from "../utils/API";
+import SubmitBtn from "../components/SubmitBtn";
 
 const CurrentData = props => {
   const [search, setSearch] = useState();
   const [stateData, setStateData] = useState({});
+  const [authState, setAuthState] = useContext(AuthContext);
+  const [userState, setUserState] = useState();
 
-  //handle this when search input is changed
-  function handleInputChange(event) {
-    let selector = document.getElementById("state-selector");
-    setSearch(selector.options[selector.selectedIndex].value.toLowerCase());
-  };
-
-  //handle this when search button clicked
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    
-    axios.get(`/api/current/${search}`)
+  useEffect(() => {
+    API.getUser(authState.userId)
       .then(res => {
-        setStateData(res.data);
+        setUserState(res.data.state.toLowerCase());
+      })
+      .catch(err => console.log(err));
+  }, [])
+
+  function handleFormSubmit() {
+    axios.get(`/api/current/${userState}`)
+      .then(res2 => {
+        console.log(res2.data);
+        setStateData(res2.data);
       })
       .catch(e => console.log(e));
-  };
+  }
 
   return (
     <div className="container">
-      <h3 className="text-center">Select State</h3>
-            <Select 
-              onChange={handleInputChange}
-            />
-            <SubmitBtn 
-                text="Submit"
-                name="submit"
-                onClick={handleFormSubmit}
-            />
-      <SearchResults stateData={stateData} search={search}/>
+      <h3 className="text-center">Current Data for {userState}</h3>
+      {userState === null ? "" : handleFormSubmit()}
+      <SearchResults stateData={stateData} search={userState}/>
     </div>
   );
 };

@@ -3,13 +3,11 @@ import "./style.css";
 import moment from "moment-timezone";
 
 function SearchResults(props) {  
-  let state = props.search || "";
   return (
     <div className="text-left">
       <ul className="search-results">
         <li>
           <div className="text-center">
-            <h2>{state.toUpperCase()}</h2>
             <p>Last Checked: {moment(props.stateData.dateModified).tz('America/New_York').format('MMMM Do, YYYY h:mm')} PM</p>
           </div>
           <p>Daily New Cases:</p>
