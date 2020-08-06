@@ -6,7 +6,7 @@ import API from "../utils/API";
 
 const CurrentData = () => {
   const [stateData, setStateData] = useState({});
-  const [authState, setAuthState] = useContext(AuthContext);
+  const [authState] = useContext(AuthContext);
   const [userState, setUserState] = useState();
 
   useEffect(() => {
