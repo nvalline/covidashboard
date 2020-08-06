@@ -1,22 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Event from "../components/Event";
+import { AuthContext } from "../utils/AuthContext";
 import API from "../utils/API";
 
 function ExistingEvents() {
   // Setting our component's initial state
   const [events, setEvents] = useState([]);
+  const [authState, setAuthState] = useContext(AuthContext);
 
   // Load all events and store them with setEvents
   useEffect(() => {
-    loadEvents();
-  }, []);
+    function loadUserEvents() {
+      API.getEventsByUser(authState.userId)
+        .then(res => {
+          setEvents(res.data);
+        })
+        .catch(err => console.log(err));
+    }
+
+    loadUserEvents();
+  }, [authState]);
 
   // Loads all events and sets them to events
   function loadEvents() {
-    API.getEvents()
+    API.getEventsByUser(authState.userId)
       .then(res => {
-        setEvents(res.data)
+        setEvents(res.data);
       })
       .catch(err => console.log(err));
   }
@@ -31,13 +41,16 @@ function ExistingEvents() {
   return (
     <div className="container">
       <h2 className="text-center mt-3 mb-5">My Tracked Events</h2>
-      {events.length === 0 ? 
+      {events.length === 0 ? (
         <div className="text-center mb-5">
           <p>No events added yet.</p>
           <br></br>
-          <Link to="/new" className="btn btn-primary">+ Add A New Event</Link>
+          <Link to="/new" className="btn btn-primary">
+            + Add A New Event
+          </Link>
         </div>
-        : events.map(event => (
+      ) : (
+        events.map(event => (
           <Event
             key={event._id}
             title={event.title}
@@ -46,13 +59,15 @@ function ExistingEvents() {
             button={() => (
               <button
                 onClick={() => deleteEvent(event._id)}
-                className="btn btn-danger text-white float-right ml-3" style={{height:"40px"}}
+                className="btn btn-danger text-white float-right ml-3"
+                style={{ height: "40px" }}
               >
                 <i className="fa fa-trash"></i>
               </button>
             )}
           />
-        ))}
+        ))
+      )}
     </div>
   );
 }

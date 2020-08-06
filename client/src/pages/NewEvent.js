@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { Input, Textarea } from "../components/FormElements";
+import { AuthContext } from "../utils/AuthContext";
 import SubmitBtn from "../components/SubmitBtn";
 import API from "../utils/API";
+import moment from "moment-timezone";
 
 function NewEvent() {
+  const [authState, setAuthState] = useContext(AuthContext);
+
   // Setting our component's initial state
   const [formObject, setFormObject] = useState({});
   const [redirect, setRedirect] = useState("");
@@ -13,7 +17,6 @@ function NewEvent() {
   function handleInputChange(event) {
     const { name, value } = event.target;
     setFormObject({ ...formObject, [name]: value });
-    console.log(formObject);
   }
 
   // When the form is submitted, use the API.saveEvent method to save the event data
@@ -25,8 +28,13 @@ function NewEvent() {
         date: formObject.date,
         title: formObject.title,
         notes: formObject.notes,
+        noticeDate: moment(formObject.date).add(14, "d"),
+        user: authState.userId,
       })
-        .then(res => setRedirect("/events"))
+        .then(res => {
+          console.log(res.data);
+          setRedirect("/events");
+        })
         .catch(err => console.log(err));
     }
   }

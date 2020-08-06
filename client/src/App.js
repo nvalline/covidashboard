@@ -1,5 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 import DesktopNav from "./components/DesktopNav/DesktopNav";
 import MobileNav from "./components/MobileNav/MobileNav";
 import Footer from "./components/Footer";
@@ -35,8 +40,9 @@ function App() {
     }
   }, []);
 
-  const handleLogout = (event) => {
-    axios.get("/auth/logout")
+  const handleLogout = event => {
+    axios
+      .get("/auth/logout")
       .then(res => {
         const newAuthState = { isAuthenticated: false };
         toast.warn(res.data.msg);
@@ -49,9 +55,7 @@ function App() {
 
   const loginRedirect = () => {
     toast.warn("Please login");
-    return (
-      <Redirect to="/login" />
-    )
+    return <Redirect to="/login" />;
   };
 
   return (
@@ -64,12 +68,17 @@ function App() {
           newestOnTop={false}
           pauseOnHover={false}
         />
-        {window.innerWidth > 1080 ? <DesktopNav handleLogout={handleLogout} /> : <MobileNav handleLogout={handleLogout} />}
+        {window.innerWidth > 1080 ? (
+          <DesktopNav handleLogout={handleLogout} />
+        ) : (
+          <MobileNav handleLogout={handleLogout} />
+        )}
         {/* <Nav /> */}
         <Switch>
           <Route exact path="/">
             {authState.isAuthenticated === true ? <Home /> : <Register />}
-          </Route> {/* Landing Page */}
+          </Route>{" "}
+          {/* Landing Page */}
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/logout" component={Login} />
@@ -80,13 +89,25 @@ function App() {
             {authState.isAuthenticated === true ? <NewEvent /> : loginRedirect}
           </Route>
           <Route exact path="/events">
-            {authState.isAuthenticated === true ? <ExistingEvents /> : loginRedirect}
+            {authState.isAuthenticated === true ? (
+              <ExistingEvents />
+            ) : (
+              loginRedirect
+            )}
           </Route>
           <Route exact path="/current">
-            {authState.isAuthenticated === true ? <CurrentData /> : loginRedirect}
+            {authState.isAuthenticated === true ? (
+              <CurrentData />
+            ) : (
+              loginRedirect
+            )}
           </Route>
           <Route exact path="/testing">
-            {authState.isAuthenticated === true ? <TestingSites /> : loginRedirect}
+            {authState.isAuthenticated === true ? (
+              <TestingSites />
+            ) : (
+              loginRedirect
+            )}
           </Route>
         </Switch>
         <Footer />

@@ -12,7 +12,13 @@ const eventSchema = new Schema({
     required: true,
   },
   notes: String,
-  user: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  noticeDate: {
+    type: Date,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
 });
 
 const Event = mongoose.model("Event", eventSchema);
