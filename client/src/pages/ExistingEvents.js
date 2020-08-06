@@ -1,22 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Event from "../components/Event";
+import { AuthContext } from "../utils/AuthContext";
 import API from "../utils/API";
 
 function ExistingEvents() {
   // Setting our component's initial state
   const [events, setEvents] = useState([]);
+  const [authState, setAuthState] = useContext(AuthContext);
 
   // Load all events and store them with setEvents
   useEffect(() => {
-    loadEvents();
-  }, []);
+    function loadUserEvents() {
+      API.getEventsByUser(authState.userId)
+        .then(res => {
+          setEvents(res.data);
+        })
+        .catch(err => console.log(err));
+    }
+
+    loadUserEvents();
+  }, [authState]);
 
   // Loads all events and sets them to events
   function loadEvents() {
-    API.getEvents()
+    API.getEventsByUser(authState.userId)
       .then(res => {
         setEvents(res.data);
-        console.log(res.data);
       })
       .catch(err => console.log(err));
   }
@@ -40,24 +49,13 @@ function ExistingEvents() {
           button={() => (
             <button
               onClick={() => deleteEvent(event._id)}
-              className="btn btn-danger text-white float-right ml-3" style={{height:"40px"}}
+              className="btn btn-danger text-white float-right ml-3"
+              style={{ height: "40px" }}
             >
               <i className="fa fa-trash"></i>
             </button>
           )}
         />
-
-        // <div className="event row align-items-baseline">
-        //   <input type="checkbox" id={event._id} value={event.value}></input>
-        //   <p className="ml-3">{event.title}</p>
-        //   <p className="ml-3">{event.date}</p>
-        //   <button
-        //     onClick={() => deleteEvent(event._id)}
-        //     className="btn btn-danger text-white float-right"
-        //   >
-        //     Delete
-        //   </button>
-        // </div>
       ))}
     </div>
   );

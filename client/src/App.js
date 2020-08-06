@@ -22,23 +22,43 @@ function App() {
       <Router>
         {window.innerWidth > 1080 ? <DesktopNav /> : <MobileNav />}
         {/* <Nav /> */}
-        <Route exact path="/" component={Register} />  {/* Landing Page */}
+        <Route exact path="/" component={Register} /> {/* Landing Page */}
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/dashboard">
-          {authState.isAuthenticated === true ? <Home /> : <Redirect to="/login" />}
+          {authState.isAuthenticated === true ? (
+            <Home />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route exact path="/new">
-          {authState.isAuthenticated === true ? <NewEvent /> : <Redirect to="/login" />}
+          {authState.isAuthenticated === true ? (
+            <NewEvent />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route exact path="/events">
-          {authState.isAuthenticated === true ? <ExistingEvents /> : <Redirect to="/login" />}
+          {authState.isAuthenticated === true ? (
+            <ExistingEvents />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route exact path="/current">
-          {authState.isAuthenticated === true ? <CurrentData /> : <Redirect to="/login" />}
+          {authState.isAuthenticated === true ? (
+            <CurrentData />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route exact path="/testing">
-          {authState.isAuthenticated === true ? <TestingSites /> : <Redirect to="/login" />}
+          {authState.isAuthenticated === true ? (
+            <TestingSites />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Footer />
       </Router>

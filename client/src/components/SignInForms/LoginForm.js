@@ -11,69 +11,72 @@ import ErrorMessages from "./ErrorMessages";
 import SuccessMessage from "./SuccessMessage";
 
 function LoginForm() {
-    const [authState, setAuthState] = useContext(AuthContext);
-    const [notificationState, setNotificationState] = useContext(NotificationContext);
+  const [authState, setAuthState] = useContext(AuthContext);
+  const [notificationState, setNotificationState] = useContext(
+    NotificationContext
+  );
 
-    let history = useHistory();
-    const [user, setUser] = useState({ email: "", password: "" });
+  let history = useHistory();
+  const [user, setUser] = useState({ email: "", password: "" });
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setUser({ ...user, [name]: value })
-    };
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
+  const handleFormSubmit = event => {
+    event.preventDefault();
 
-        const userData = user;
+    const userData = user;
 
-        axios.post("/auth/login", userData)
-            .then(res => {
-                if (res.data.auth) {
-                    const newState = { isAuthenticated: true };
-                    setAuthState(newState);
-                    history.push("/dashboard");
-                } else {
-                    const loginMsg = res.data.message;
-                    setNotificationState({ msg: loginMsg });
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    axios
+      .post("/auth/login", userData)
+      .then(res => {
+        if (res.data.auth) {
+          const newState = { isAuthenticated: true, userId: res.data.userId };
+          setAuthState(newState);
+          history.push("/dashboard");
+        } else {
+          const loginMsg = res.data.message;
+          setNotificationState({ msg: loginMsg });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
-        setUser({ email: "", password: "" });
-    }
+    setUser({ email: "", password: "" });
+  };
 
-    return (
-        <div className="mt-5">
-            <form className="mb-5">
-                <h4>Log In</h4>
-                {notificationState.fromReg && <SuccessMessage success={notificationState} />}
-                {notificationState.msg && <ErrorMessages error={notificationState} />}
-                <Input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    onChange={handleInputChange}
-                    value={user.email}
-                />
-                <Input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={handleInputChange}
-                    value={user.password}
-                />
-                <p>Or, <Link to="/register">create account</Link></p>
-                <SubmitBtn
-                    text="Login"
-                    name="login"
-                    onClick={handleFormSubmit}
-                />
-            </form>
-        </div>
-    )
+  return (
+    <div className="mt-5">
+      <form className="mb-5">
+        <h4>Log In</h4>
+        {notificationState.fromReg && (
+          <SuccessMessage success={notificationState} />
+        )}
+        {notificationState.msg && <ErrorMessages error={notificationState} />}
+        <Input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          onChange={handleInputChange}
+          value={user.email}
+        />
+        <Input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleInputChange}
+          value={user.password}
+        />
+        <p>
+          Or, <Link to="/register">create account</Link>
+        </p>
+        <SubmitBtn text="Login" name="login" onClick={handleFormSubmit} />
+      </form>
+    </div>
+  );
 }
 
 export default LoginForm;
