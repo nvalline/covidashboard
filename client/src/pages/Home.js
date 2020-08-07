@@ -69,12 +69,12 @@ function Home() {
             <h4 className="section-title">Positive Cases</h4>
             <div className="row">
               <div className="col">
-                <p>Total</p>
-                <p className="data-result">{stateData.positive === undefined ? "N/A" : stateData.positive.toLocaleString()}</p>
-              </div>
-              <div className="col">
                 <p>New</p>
                 <p className="data-result">{stateData.positiveIncrease}</p>
+              </div>
+              <div className="col">
+                <p>Total</p>
+                <p className="data-result">{stateData.positive === undefined ? "N/A" : stateData.positive.toLocaleString()}</p>
               </div>
             </div>
             <p>{userCounty} County: (Get County Data)</p>
