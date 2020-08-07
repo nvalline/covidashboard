@@ -14,6 +14,7 @@ function ExistingEvents() {
     function loadUserEvents() {
       API.getEventsByUser(authState.userId)
         .then(res => {
+          console.log(res.data)
           setEvents(res.data);
         })
         .catch(err => console.log(err));
@@ -56,11 +57,10 @@ function ExistingEvents() {
             title={event.title}
             date={event.date}
             notes={event.notes}
+            noticeDate={event.noticeDate}
             button={() => (
               <button
                 onClick={() => deleteEvent(event._id)}
-                className="btn btn-danger text-white float-right ml-3"
-                style={{ height: "40px" }}
               >
                 <i className="fa fa-trash"></i>
               </button>

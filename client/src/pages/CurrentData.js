@@ -21,11 +21,11 @@ const CurrentData = () => {
         setUserState(state);
       })
       .catch(err => console.log(err));
-  }, [])
+  }, [authState.userId])
 
   return (
-    <div className="container">
-      <h3 className="text-center">Current Data for {userState}</h3>
+    <div className="container-fluid">
+      <h3 className="text-center mt-3">Current Data for {userState}</h3>
       <SearchResults stateData={stateData} />
     </div>
   );

@@ -18,7 +18,7 @@ function TestingSites() {
             setUserState(state);
           })
           .catch(err => console.log(err));
-      }, [])
+      }, [authState.userId])
 
     return (
         <div className="container text-center">
