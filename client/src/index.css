@@ -9,11 +9,70 @@ html, body, #root {
   height: 100%;
 }
 
-body {
+.user-info {
+  margin: 0px 40px;
+  margin-top: 20px;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon i {
+  color: black;
+  float: left;
+  margin-right: 5px;
+  align-items: center;
+}
+
+.sections {
+  text-align: center;
+  margin: 0px 40px;
+}
+
+.section {
+  font-size: 1rem;
+  margin: 20px;
+  min-height: 350px;
+  min-width: 275px;
+  border: 1px solid #75ABDE;
+  border-radius: 10px;
+}
+
+.section-title {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.dash-event {
+  padding: 5px;
+}
+
+.dash-event-title {
+  text-align: left;
+  float: left;
+  min-width: 75%;
+  border-radius: 5px 0px 0px 5px;
+  padding: 5px;
+  background-color: #EEEEEE;
+}
+
+.dash-event-date {
+  float: right;
+  min-width: 25%;
+  border-radius: 0px 5px 5px 0px;
+  padding: 5px;
+  background-color: #D0D0D0;
+}
+
+#symptoms {
   background-image: url('/img/coronavirus.png');
-  background-size: 35%;
+  background-size: 50%;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-position: center;
 }
 
@@ -27,39 +86,16 @@ body {
   border: #CF3232
 }
 
-.section {
-  border: 1px solid #75ABDE;
-  border-radius: 10px;
-  margin: 20px;
-  min-height: 350px;
-}
-
-.section-title {
-  margin-top: 10px;
-}
-
-.dash-event {
-  border-radius: 5px;
-  padding: 5px;
-  margin-bottom: 5px;
-}
-
-.dash-event-title {
-  display: inline;
-  background-color: #EEEEEE;
-}
-
-.dash-event-date {
-  background-color: #D0D0D0;
-  height: 100%;
-}
-
 @media only screen and (max-width: 1079px) {
-  body {
-    background-image: url('/img/coronavirus.png');
-    background-size: 90%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
+
+  .sections {
+    text-align: center;
+    margin: 0px;
+  }
+
+  .section {
+    font-size: .8rem;
+    padding: 5px;
+    min-width: 335px;
   }
 }
