@@ -9,6 +9,7 @@
 }
 
 .data {
+  background-color: #f9f9f9;
   border: 1px solid #75ABDE;
   border-radius: 20px;
   display: inline-block;

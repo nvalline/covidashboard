@@ -14,7 +14,6 @@ function ExistingEvents() {
     function loadUserEvents() {
       API.getEventsByUser(authState.userId)
         .then(res => {
-          console.log(res.data)
           setEvents(res.data);
         })
         .catch(err => console.log(err));

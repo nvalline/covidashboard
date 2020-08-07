@@ -6,8 +6,6 @@ import SubmitBtn from "../components/SubmitBtn";
 import API from "../utils/API";
 import moment from "moment-timezone";
 
-console.log(moment().add(14, "d")._d);
-
 function NewEvent() {
   const [authState] = useContext(AuthContext);
 
@@ -34,7 +32,6 @@ function NewEvent() {
         user: authState.userId,
       })
         .then(res => {
-          console.log(res.data);
           setRedirect("/events");
         })
         .catch(err => console.log(err));
