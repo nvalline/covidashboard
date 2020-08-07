@@ -33,7 +33,7 @@ function App() {
     } else {
       setAuthState({ isAuthenticated: false, userId: null });
     }
-  }, []);
+  }, [isAuthenticated, userId, setAuthState]);
 
   const handleLogout = (event) => {
     axios.get("/auth/logout")
@@ -48,7 +48,7 @@ function App() {
   };
 
   const loginRedirect = () => {
-    toast.warn("Please login");
+    toast.info("Please login");
     return (
       <Redirect to="/login" />
     )
