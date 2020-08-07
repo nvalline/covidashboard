@@ -5,6 +5,12 @@ export default {
   getEvents: function () {
     return axios.get("/api/events");
   },
+  getUser: function (id) {
+    return axios.get("/api/user/get/" + id);
+  },
+  getEventsByUser: function (id) {
+    return axios.get("/api/user/" + id);
+  },
   // Gets the event with the given id
   getEvent: function (id) {
     return axios.get("/api/events/" + id);

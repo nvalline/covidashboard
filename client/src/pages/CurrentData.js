@@ -1,42 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from "../utils/AuthContext";
 import axios from "axios";
-import { Select } from "../components/FormElements";
-import SubmitBtn from "../components/SubmitBtn";
 import SearchResults from "../components/SearchResults";
+import API from "../utils/API";
 
-const CurrentData = props => {
-  const [search, setSearch] = useState();
+const CurrentData = () => {
   const [stateData, setStateData] = useState({});
+  const [authState] = useContext(AuthContext);
+  const [userState, setUserState] = useState();
 
-  //handle this when search input is changed
-  function handleInputChange(event) {
-    let selector = document.getElementById("state-selector");
-    setSearch(selector.options[selector.selectedIndex].value.toLowerCase());
-  };
-
-  //handle this when search button clicked
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    
-    axios.get(`/api/current/${search}`)
+  useEffect(() => {
+    API.getUser(authState.userId)
       .then(res => {
-        setStateData(res.data);
+        let state = res.data.state.toLowerCase();
+        axios.get(`/api/current/${state}`)
+          .then(res2 => {
+            setStateData(res2.data);
+          })
+        state = state.toUpperCase();
+        setUserState(state);
       })
-      .catch(e => console.log(e));
-  };
+      .catch(err => console.log(err));
+  }, [authState.userId])
 
   return (
-    <div className="container">
-      <h3 className="text-center">Select State</h3>
-            <Select 
-              onChange={handleInputChange}
-            />
-            <SubmitBtn 
-                text="Submit"
-                name="submit"
-                onClick={handleFormSubmit}
-            />
-      <SearchResults stateData={stateData} search={search}/>
+    <div className="container-fluid">
+      <h3 className="text-center mt-3">Current Data for {userState}</h3>
+      <SearchResults stateData={stateData} />
     </div>
   );
 };

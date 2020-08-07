@@ -1,0 +1,48 @@
+.event {
+    border: 1px solid #75ABDE;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+    justify-content: space-between;
+}
+
+.event button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #CF3232;
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;
+    border: 0;
+    border-radius: 5px;
+    max-height: 30px;
+    min-height: 30px;
+    max-width: 30px;
+    min-width: 30px;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.title, .notes, .date, .notice {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.notes, .date, .notice {
+    margin-bottom: 5px;
+}
+
+.date, .notice {
+    color: rgb(168, 168, 168);
+}
+
