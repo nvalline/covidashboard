@@ -11,12 +11,10 @@ function MobileNav({ handleLogout }) {
         <nav className="navbar-ft fixed-bottom navbar-expand-lg">
             <div className="row">
                 <div className="col">
-                    {authState.isAuthenticated === false ?
-                        <Link to={'/login'} className="nav-link"><i className="fa fa-sign-in"></i></Link> :
-                        <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}><i className="fa fa-sign-out"></i></Link>}
+                    <Link to={'/'} className="nav-link"><i className="fa fa-home"></i></Link>
                 </div>
                 <div className="col">
-                    <Link to={'/'} className="nav-link"><i className="fa fa-home"></i></Link>
+                    <Link to={'/current'} className="nav-link"><i className="fa fa-line-chart"></i></Link>
                 </div>
                 <div className="col">
                     <Link to={'/new'} className="nav-link"><i className="fa fa-plus"></i></Link>
@@ -25,10 +23,12 @@ function MobileNav({ handleLogout }) {
                     <Link to={'/events'} className="nav-link"><i className="fa fa-calendar-o"></i></Link>
                 </div>
                 <div className="col">
-                    <Link to={'/current'} className="nav-link"><i className="fa fa-line-chart"></i></Link>
+                    <Link to={'/testing'} className="nav-link"><i className="fa fa-map-marker"></i></Link>
                 </div>
                 <div className="col">
-                    <Link to={'/testing'} className="nav-link"><i className="fa fa-map-marker"></i></Link>
+                    {authState.isAuthenticated === false ?
+                        <Link to={'/login'} className="nav-link"><i className="fa fa-sign-in"></i></Link> :
+                        <Link to={'/logout'} className="nav-link" onClick={() => handleLogout()}><i className="fa fa-sign-out"></i></Link>}
                 </div>
             </div>
         </nav>
