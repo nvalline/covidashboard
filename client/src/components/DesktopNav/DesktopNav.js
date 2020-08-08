@@ -37,6 +37,10 @@ function DesktopNav({ handleLogout }) {
                         
                         <Link to={'/testing'} className="nav-link"><i className="fa fa-map-marker"></i> Testing Locations</Link>
                     </li>
+                    <li className="nav-item">
+                        
+                        <Link to={'/settings'} className="nav-link"><i className="fa fa-wrench"></i> Settings</Link>
+                    </li>
                 </ul>
                 <div className="nav-item ml-auto">
                     
