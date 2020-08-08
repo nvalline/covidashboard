@@ -9,6 +9,8 @@ import { NotificationContext } from "../../utils/NotificationContext";
 
 import ErrorMessages from "./ErrorMessages";
 
+let convertedResponse = "";
+
 function RegisterForm() {
     const [setNotificationState] = useContext(NotificationContext);
 
@@ -21,6 +23,7 @@ function RegisterForm() {
         if (errors.length > 0) {
             SetHasErrors(true);
         }
+
     }, [errors]);
 
     const handleInputChange = (event) => {

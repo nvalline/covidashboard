@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { BrowserRouter as Redirect } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 import { Input, Select } from "../components/FormElements";
 import SubmitBtn from "../components/SubmitBtn";
