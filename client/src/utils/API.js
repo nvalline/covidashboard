@@ -8,6 +8,9 @@ export default {
   getUser: function (id) {
     return axios.get("/api/user/get/" + id);
   },
+  updateUser: function (id, state, county) {
+    return axios.get("/api/user/update/" + id + "/" + state + "/" + county);
+  },
   getEventsByUser: function (id) {
     return axios.get("/api/user/" + id);
   },

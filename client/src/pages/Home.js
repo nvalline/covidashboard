@@ -43,7 +43,7 @@ function Home() {
   }, [authState.userId]);
 
   return (
-    <div className="">
+    <div className="mb-5">
       <div className="row user-info">
         <div className="col icon">
           <span>
@@ -90,30 +90,40 @@ function Home() {
             <h4 className="section-title">Symptoms</h4>
             <div className="text-left">
               <Symptoms />
+              <div className="text-center mt-1">
+                <Link to="/testing" className="btn btn-primary">
+                  Get Tested
+                </Link>
+              </div>
             </div>
           </div>
           {/* Events */}
           <div id="events" className="col section">
             <h4 className="section-title">Watched Events</h4>
-            {events.length === 0 ? (
-              <div className="text-center mb-5">
-                <p>No events added yet.</p>
-              </div>
-            ) : (
-              events.map(event => (
-                <div className="dash-event">
-                  <Link to="/events">
-                    <p className="dash-event-title" style={{ color: "black" }}>
-                      {event.title}
-                    </p>
-                  </Link>
-                  <p className="dash-event-date">
-                    {moment(event.date).calendar()}
-                  </p>
+            <div id="watched">
+              {events.length === 0 ? (
+                <div className="text-center mb-5">
+                  <p>No events added yet.</p>
                 </div>
-              ))
-            )}
-            <Link to="/new" className="btn btn-primary mb-3">
+              ) : (
+                events.map(event => (
+                  <div className="dash-event">
+                    <Link to="/events">
+                      <p
+                        className="dash-event-title"
+                        style={{ color: "black" }}
+                      >
+                        {event.title}
+                      </p>
+                    </Link>
+                    <p className="dash-event-date">
+                      {moment(event.date).format("l")}
+                    </p>
+                  </div>
+                ))
+              )}
+            </div>
+            <Link to="/new" className="btn btn-primary mt-3">
               + Add A New Event
             </Link>
           </div>

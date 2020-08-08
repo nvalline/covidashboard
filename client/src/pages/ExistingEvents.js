@@ -44,10 +44,6 @@ function ExistingEvents() {
       {events.length === 0 ? (
         <div className="text-center mb-5">
           <p>No events added yet.</p>
-          <br></br>
-          <Link to="/new" className="btn btn-lg btn-primary">
-            + Add A New Event
-          </Link>
         </div>
       ) : (
         events.map(event => (
@@ -67,6 +63,11 @@ function ExistingEvents() {
           />
         ))
       )}
+      <div className="text-center mt-5">
+        <Link to="/new" className="btn btn-lg btn-primary">
+          + Add A New Event
+        </Link>
+      </div>
     </div>
   );
 }

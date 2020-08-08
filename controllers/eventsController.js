@@ -9,7 +9,17 @@ module.exports = {
   },
   findUser: function (req, res) {
     db.User.findById(req.params.id)
-      .then(dbEvent => res.json(dbEvent))
+      .then(dbUser => res.json(dbUser))
+      .catch(err => res.status(422).json(err));
+  },
+  updateUser: function (req, res) {
+    db.User.updateOne({ _id: req.params.id }, {
+      $set: {
+        state: req.params.state,
+        county: req.params.county
+      }
+    })
+      .then(dbUser => res.json(dbUser))
       .catch(err => res.status(422).json(err));
   },
   findAllByUser: function (req, res) {
