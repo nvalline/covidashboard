@@ -26,7 +26,7 @@ function MobileNav({ handleLogout }) {
                     <Link to={'/testing'} className="nav-link"><i className="fa fa-map-marker"></i></Link>
                 </div>
                 <div className="ft-icon">
-                    <Link to={'/settings'} className="nav-link"><i className="fa fa-user-circle-o"></i></Link>
+                    <Link to={'/settings'} className="nav-link"><i className="fa fa-wrench"></i></Link>
                 </div>
                 <div className="ft-icon">
                     {authState.isAuthenticated === false ?
