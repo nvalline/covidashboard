@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from "../utils/AuthContext";
-import { Input, Select } from "../components/FormElements";
+import { StateSelect, CountySelect } from "../components/FormElements";
 import SubmitBtn from "../components/SubmitBtn";
 import API from "../utils/API";
 import { toast } from "react-toastify";
@@ -15,7 +15,6 @@ function Settings() {
       .then(res => {
         let state = res.data.state;
         let county = res.data.county;
-        console.log(state, county)
         setNewUserCounty(county);
         setNewUserState(state);
 
@@ -32,7 +31,7 @@ function Settings() {
   function selectItemByValue(elmnt, value){
     for(var i=0; i < elmnt.options.length; i++)
     {
-      if(elmnt.options[i].value == value)
+      if(elmnt.options[i].value === value)
         elmnt.selectedIndex = i;
     }
   }
@@ -57,7 +56,7 @@ function Settings() {
       <h2 className="text-center mt-3 mb-5">User Settings</h2>
         <div className="row">
           <div className="col">
-            <Select
+            <StateSelect
                 name="state"
                 id="state"
                 label="User State:"
@@ -65,11 +64,10 @@ function Settings() {
             />
           </div>
           <div className="col">
-            <Input
+            <CountySelect
                 type="text"
                 id="county"
                 label="User County:"
-                placeholder="County"
                 onChange={handleCountyChange}
             />
           </div>

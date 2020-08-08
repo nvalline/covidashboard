@@ -20,9 +20,11 @@ export function Textarea(props) {
     );
 }
 
-export function Select(props) {
+export function StateSelect(props) {
 
     const [stateOptions, setStateOptions] = useState([]);
+
+    let inc = 0;
 
     axios.get("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
     .then(res => {
@@ -41,7 +43,40 @@ export function Select(props) {
             <label><strong>{props.label}</strong></label>
             <select className="form-control" id="state-selector" {...props}>
                 {stateOptions.map(state => (
-                    <option>{state}</option>
+                    <option key={inc++}>{state}</option>
+                ))}
+            </select>
+        </div>
+    );
+}
+
+export function CountySelect(props) {
+
+    const [countyOptions, setCountyOptions] = useState([]);
+
+    let inc = 0;
+
+    axios.get("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv")
+    .then(res => {
+        let converted = Papa.parse(res.data, { header: true, fastMode: true });
+        let latest = converted.data.slice(converted.data.length - 3200);
+        console.log(latest[0].state)
+        let counties = [];
+        for (let i = 0; i < latest.length; i++) {
+            if (latest[i].state === document.getElementById("state").value) {
+                counties.push(latest[i].county);
+            }
+        }
+        setCountyOptions(counties);
+    })
+    .catch(err => console.log(err));
+
+    return (
+        <div className="form-group">
+            <label><strong>{props.label}</strong></label>
+            <select className="form-control" id="state-selector" {...props}>
+                {countyOptions.map(county => (
+                    <option key={inc++}>{county}</option>
                 ))}
             </select>
         </div>

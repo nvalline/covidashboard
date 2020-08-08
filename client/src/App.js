@@ -120,7 +120,7 @@ function App() {
         </Switch>
         <Footer />
       </Router>
-    // </NotificationProvider>
+    </NotificationProvider>
   );
 }
 

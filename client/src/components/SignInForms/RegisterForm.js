@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Input, Select } from "../FormElements";
+import { Input, StateSelect, CountySelect } from "../FormElements";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -81,18 +81,15 @@ function RegisterForm() {
                 value={user.password2}
             />
             <label htmlFor="state">Select Your State:</label>
-            <Select
+            <StateSelect
                 name="state"
                 id="state"
                 onChange={handleInputChange}
-                value={user.state}
             />
-            <Input
-                type="text"
+            <CountySelect
                 name="county"
-                placeholder="County"
+                id="county"
                 onChange={handleInputChange}
-                value={user.county}
             />
             <p>Or, <Link to={'/login'}>log in</Link></p>
             <SubmitBtn
