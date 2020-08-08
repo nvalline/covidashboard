@@ -15,7 +15,8 @@ import NewEvent from "./pages/NewEvent";
 import ExistingEvents from "./pages/ExistingEvents";
 import CurrentData from "./pages/CurrentData";
 import TestingSites from "./pages/TestingSites";
-import { NotificationProvider } from "./utils/NotificationContext";
+import Settings from "./pages/Settings";
+// import { NotificationProvider } from "./utils/NotificationContext";
 import { AuthContext } from "./utils/AuthContext";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -59,7 +60,7 @@ function App() {
   };
 
   return (
-    <NotificationProvider>
+    // <NotificationProvider>
       <Router>
         <ToastContainer
           position="top-center"
@@ -109,10 +110,17 @@ function App() {
               loginRedirect
             )}
           </Route>
+          <Route exact path="/settings">
+            {authState.isAuthenticated === true ? (
+              <Settings />
+            ) : (
+              loginRedirect
+            )}
+          </Route>
         </Switch>
         <Footer />
       </Router>
-    </NotificationProvider>
+    // </NotificationProvider>
   );
 }
 

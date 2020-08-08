@@ -21,6 +21,7 @@ export function Textarea(props) {
 export function Select(props) {
     return (
         <div className="form-group">
+            <label><strong>{props.label}</strong></label>
             <select className="form-control" id="state-selector" {...props}>
                 <option value="">Select A State...</option>
                 <option value="AL">AL</option>
