@@ -20,11 +20,15 @@ import { NotificationProvider } from "./utils/NotificationContext";
 import { AuthContext } from "./utils/AuthContext";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import API from "./utils/API";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./toast.css";
 
 toast.configure();
+
+// API.updateCounties();
+// API.updateStates();
 
 function App() {
   const [authState, setAuthState] = useContext(AuthContext);

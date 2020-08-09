@@ -43,7 +43,6 @@ function Home() {
 
   }, [authState.userId])
 
-  
 
   return (
     <div className="mb-5">

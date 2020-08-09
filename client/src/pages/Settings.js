@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from "../utils/AuthContext";
-import { StateSelect, CountySelect } from "../components/FormElements";
+import CountySelect from "../components/CountySelect";
+import StateSelect from "../components/StateSelect";
 import SubmitBtn from "../components/SubmitBtn";
 import API from "../utils/API";
 import { toast } from "react-toastify";
@@ -68,6 +69,7 @@ function Settings() {
                 type="text"
                 id="county"
                 label="User County:"
+                selectedstate={newUserState}
                 onChange={handleCountyChange}
             />
           </div>

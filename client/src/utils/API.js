@@ -26,4 +26,11 @@ export default {
   saveEvent: function (eventData) {
     return axios.post("/api/events", eventData);
   },
+  // Updates NY Times Data
+  updateStates: function () {
+    return axios.get("/api/convert/states");
+  },
+  updateCounties: function () {
+    return axios.get("/api/convert/counties");
+  },
 };

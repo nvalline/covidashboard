@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Input, StateSelect, CountySelect } from "../FormElements";
+import { Input } from "../FormElements";
+import StateSelect from "../StateSelect";
+import CountySelect from "../CountySelect";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -8,8 +10,6 @@ import uuid from "react-uuid";
 import { NotificationContext } from "../../utils/NotificationContext";
 
 import ErrorMessages from "./ErrorMessages";
-
-let convertedResponse = "";
 
 function RegisterForm() {
     const [setNotificationState] = useContext(NotificationContext);
