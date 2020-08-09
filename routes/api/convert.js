@@ -4,10 +4,9 @@ const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
 
-router.get("/counties", (req, res) => {
+router.get("/", (req, res) => {
     axios.get("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv", {headers:{"Content-Type" : "text/csv"}})
-    .then(res => {
-        console.log(res);
+    .then(() => {
         let converted = Papa.parse(res.data, { header: true });
         let latest = converted.data.slice(converted.data.length - 3221);
         let counties = [];
@@ -17,6 +16,7 @@ router.get("/counties", (req, res) => {
             }
         }
         saveConvertedData(counties, "counties");
+        res.sendStatus(200);
     })
     .catch(err => console.log(err));
 })
@@ -24,7 +24,11 @@ router.get("/counties", (req, res) => {
 function saveConvertedData(data, name) {
     let outputLocation = path.resolve(__dirname, "../../client/src/components/", `nyt-${name}-data.json`);
     fs.writeFile(outputLocation, JSON.stringify(data, null, 4), function(err) {
-        console.log("Data Refreshed!")
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Data Refreshed!")
+        }
     });
 }
 

@@ -28,6 +28,7 @@ export default {
   },
   // Updates NY Times Counties
   convertCounties: function () {
-    return axios.get("/api/convert/counties");
+    console.log("hit convert API");
+    return axios.get("/api/convert");
   },
 };
