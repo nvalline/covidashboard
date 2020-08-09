@@ -27,8 +27,7 @@ import "./toast.css";
 
 toast.configure();
 
-// API.updateCounties();
-// API.updateStates();
+API.convertCounties();
 
 function App() {
   const [authState, setAuthState] = useContext(AuthContext);
@@ -43,6 +42,7 @@ function App() {
     } else {
       setAuthState({ isAuthenticated: false, userId: null });
     }
+
   }, [isAuthenticated, setAuthState, userId]);
 
   const handleLogout = event => {

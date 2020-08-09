@@ -1,5 +1,5 @@
 import React from "react";
-import abbr from "./abbrvStates.json";
+import stateCounties from "./stateCounties.json";
 
 function StateSelect(props) {
 
@@ -9,8 +9,8 @@ function StateSelect(props) {
         <div className="form-group">
             <label><strong>{props.label}</strong></label>
             <select className="form-control" id="state-selector" {...props}>
-                {abbr.map(state => (
-                    <option key={inc++}>{state.abbreviation}</option>
+                {stateCounties.map(state => (
+                    <option key={inc++}>{state.id}</option>
                 ))}
             </select>
         </div>
