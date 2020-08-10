@@ -10,7 +10,7 @@ function CountySelect(props) {
             <label><strong>{props.label}</strong></label>
             <select className="form-control" id="county-selector" {...props}> 
                 {props.selectedstate !== undefined ? 
-                stateCounties.find(state => state.id === props.selectedstate).counties.map(state => (<option key={inc++}>{state}</option>))
+                stateCounties.find(state => state.id === props.selectedstate).counties.map(county => (<option key={inc++}>{county}</option>))
                 : "N/A"
                 }
             </select>
