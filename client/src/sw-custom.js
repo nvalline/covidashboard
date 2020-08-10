@@ -11,7 +11,7 @@ if ("function" === typeof importScripts) {
         workbox.setConfig({ debug: false });
 
         //`generateSW` and `generateSWString` provide the option
-        // to force update an exiting service worker.
+        // to force update an exiting service worker. 
         // Since we're using `injectManifest` to build SW,
         // manually overriding the skipWaiting();
         self.addEventListener("install", (event) => {
@@ -67,3 +67,4 @@ if ("function" === typeof importScripts) {
         console.error("Workbox could not be loaded. No offline support");
     }
 }
+

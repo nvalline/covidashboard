@@ -4,6 +4,7 @@ import { Input, Textarea } from "../components/FormElements";
 import { AuthContext } from "../utils/AuthContext";
 import SubmitBtn from "../components/SubmitBtn";
 import API from "../utils/API";
+import IDB from "../utils/IDB";
 import moment from "moment-timezone";
 
 function NewEvent() {
@@ -32,11 +33,21 @@ function NewEvent() {
         user: authState.userId,
       })
         .then(res => {
+          newIDB();
           setRedirect("/events");
         })
         .catch(err => console.log(err));
     }
   }
+
+  function newIDB() {
+    API.getEventsByUser(authState.userId)
+      .then(res => {
+        IDB.updateIDB(res.data);
+      })
+      .catch(err => console.log(err));
+  }
+
   if (redirect) {
     return <Redirect to={{ pathname: redirect }} />;
   } else {
