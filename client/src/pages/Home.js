@@ -14,7 +14,6 @@ function Home() {
   const [userEmail, setUserEmail] = useState();
   const [authState] = useContext(AuthContext);
   const [userState, setUserState] = useState();
-  const [userStateName, setUserStateName] = useState();
   const [userCounty, setUserCounty] = useState();
   const [events, setEvents] = useState([]);
 
@@ -89,12 +88,6 @@ function Home() {
             </div>
             <p className="mb-0 sub-header"><strong>{userCounty}</strong></p>
             <div className="row">
-              {/* <div className="col">
-                <p>deaths</p>
-                <p className="data-result">
-                  { userState == null ? "" : getCountyResults(userState, userCounty)[0].deaths } 
-                </p>
-              </div> */}
               <div className="col">
                 <p>Total</p>
                 <p className="data-result">
