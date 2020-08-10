@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { BrowserRouter as Redirect } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 import { Input, Select } from "../components/FormElements";
 import SubmitBtn from "../components/SubmitBtn";
@@ -16,7 +15,6 @@ function Settings() {
       .then(res => {
         let state = res.data.state;
         let county = res.data.county;
-        console.log(state, county)
         setNewUserCounty(county);
         setNewUserState(state);
 
@@ -33,7 +31,7 @@ function Settings() {
   function selectItemByValue(elmnt, value){
     for(var i=0; i < elmnt.options.length; i++)
     {
-      if(elmnt.options[i].value == value)
+      if(elmnt.options[i].value === value)
         elmnt.selectedIndex = i;
     }
   }
