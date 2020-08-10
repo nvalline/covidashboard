@@ -76,8 +76,8 @@ function Home() {
           {/* Cases */}
           <div id="cases" className="col section">
             <h4 className="section-title">Positive Cases</h4>
-            <p className="mb-0 sub-header"><strong>{userState}</strong></p>
-            <div className="row">
+            <h5 className="mb-0 sub-header">{userState}</h5>
+            <div className="row pocket">
               <div className="col">
                 <p>New</p>
                 <p className="data-result">{stateData.positiveIncrease}</p>
@@ -91,14 +91,19 @@ function Home() {
                 </p>
               </div>
             </div>
-            <p className="mb-0 sub-header"><strong>{userCounty}</strong></p>
-            <div className="row">
+            <h5 className="mb-0 sub-header">{userCounty}</h5>
+            <div className="row pocket">
               <div className="col">
                 <p>Total</p>
                 <p className="data-result">
                   { userState == null ? "" : getCountyResults(userState, userCounty)[0].cases } 
                 </p>
               </div>
+            </div>
+            <div className="text-center mt-3 mb-3">
+              <Link to="/current" className="btn btn-primary">
+                  See Current Data
+              </Link>
             </div>
           </div>
         </div>
@@ -109,7 +114,7 @@ function Home() {
             <h4 className="section-title">Symptoms</h4>
             <div className="text-left">
               <Symptoms />
-              <div className="text-center mt-1">
+              <div className="text-center mt-3 mb-3">
                 <Link to="/testing" className="btn btn-primary">
                   Get Tested
                 </Link>
@@ -142,7 +147,7 @@ function Home() {
                 ))
               )}
             </div>
-            <Link to="/new" className="btn btn-primary mt-3">
+            <Link to="/new" className="btn btn-primary mt-3 mb-3">
               + Add A New Event
             </Link>
           </div>
