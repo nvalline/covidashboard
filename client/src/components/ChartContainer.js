@@ -1,63 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Select } from "../components/FormElements";
-import SubmitBtn from "../components/SubmitBtn";
-import Chart from "../components/Chart";
+import { AuthContext } from "../utils/AuthContext";
+import API from "../utils/API";
+import ChartJS from "../components/ChartJS";
 import moment from "moment-timezone";
 
 const ChartData = props => {
-  const [search, setSearch] = useState();
-  const [trendData, setTrendData] = useState();
-  const [trendDirection, setTrendDirection] = useState();
+  const [authState] = useContext(AuthContext);
+  const [userState, setUserState] = useState();
+  const [lowercaseState, setlowercaseState] = useState();
+  const [testDates, setTestDates] = useState();
+  const [increaseHos, setincreaseHos] = useState();
+  const [posTests, setPosTests] = useState();
+  const [trend, setTrend] = useState();
 
-  //handle this when search input is changed
-  function handleInputChange(event) {
-    let selector = document.getElementById("state-selector");
-    setSearch(selector.options[selector.selectedIndex].value.toLowerCase());
-  }
-
-  //handle this when search button clicked
-  function handleFormSubmit(event) {
-    event.preventDefault();
-
-    axios
-      .get(`https://covidtracking.com/api/v1/states/${search}/daily.json`)
+  useEffect(() => {
+    API.getUser(authState.userId)
       .then(res => {
-        let dataset = [];
-        for (let i = 0; i < 30; i++) {
-          dataset.push({
-            name: moment(res.data[i].dateChecked).format("MMMM Do"),
-            totalTests: res.data[i].totalTestResultsIncrease,
-            positiveTests: res.data[i].positiveIncrease,
-          });
-        }
-        setTrendData(dataset.reverse());
-
-        function difference(a, b) {
-          return a - b === 0 ? 0 : 100 * Math.abs((a - b) / b);
-        }
-
-        const a = parseInt(dataset[29].positiveTests);
-        const b = parseInt(dataset[0].positiveTests);
-
-        if (difference(a, b) < 10) {
-          setTrendDirection("Neutral");
-        } else if (a < b && difference(a, b) > 10) {
-          setTrendDirection("Downwards");
-        } else if (a > b && difference(a, b) > 10) {
-          setTrendDirection("Upwards");
-        }
+        let lowerState = res.data.state.toLowerCase();
+        setlowercaseState(lowerState);
+        chartData();
       })
-      .catch(e => console.log(e));
-  }
+      .catch(err => console.log(err));
+
+    function chartData() {
+      axios
+        .get(
+          `https://covidtracking.com/api/v1/states/${lowercaseState}/daily.json`
+        )
+        .then(res => {
+          setUserState(res.data[0].state);
+
+          let dataset = {
+            testDates: [],
+            increaseHos: [],
+            positiveTests: [],
+          };
+
+          for (let i = 0; i < 13; i++) {
+            dataset.testDates.push(
+              moment(res.data[i].dateChecked).format("MMMM Do")
+            );
+            dataset.increaseHos.push(res.data[i].hospitalizedIncrease);
+            dataset.positiveTests.push(res.data[i].positiveIncrease);
+          }
+
+          setTestDates(dataset.testDates.reverse());
+          setincreaseHos(dataset.increaseHos.reverse());
+          setPosTests(dataset.positiveTests.reverse());
+
+          const a = parseInt(dataset.positiveTests[13]);
+          const b = parseInt(dataset.positiveTests[0]);
+          a > b ? setTrend("higher") : setTrend("lower");
+        })
+        .catch(err => console.log(err));
+    }
+  }, [authState.userId, userState, lowercaseState]);
 
   return (
-    <div className="container">
-      <h3 className="text-center">Select State</h3>
-      <Select onChange={handleInputChange} />
-      <SubmitBtn text="Submit" name="submit" onClick={handleFormSubmit} />
-      <Chart dataset={trendData} trendDirection={trendDirection} />
-    </div>
+    <ChartJS
+      state={userState}
+      testDates={testDates}
+      posTests={posTests}
+      increaseHos={increaseHos}
+      trend={trend}
+    />
   );
 };
 

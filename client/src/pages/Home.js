@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 import axios from "axios";
 import API from "../utils/API";
+import ChartContainer from "../components/ChartContainer";
 import Symptoms from "../components/Symptoms";
 import moment from "moment-timezone";
 import nytCounties from "../components/nyt-counties-data.json";
@@ -29,11 +30,10 @@ function Home() {
 
         setUserState(res.data.state);
         let state = res.data.state.toLowerCase();
-        axios.get(`/api/current/${state}`)
-          .then(res2 => {
-            setStateData(res2.data);
-            getEvents();
-          })          
+        axios.get(`/api/current/${state}`).then(res2 => {
+          setStateData(res2.data);
+          getEvents();
+        });
       })
       .catch(err => console.log(err));
 
@@ -58,7 +58,8 @@ function Home() {
     <div className="mb-5">
       <div className="row user-info">
         <div className="col icon">
-          <span><i className="fa fa-user-circle-o"></i> {userEmail}
+          <span>
+            <i className="fa fa-user-circle-o"></i> {userEmail}
           </span>
         </div>
         <div className="col icon">
@@ -70,7 +71,7 @@ function Home() {
         <div className="row">
           {/* Trend */}
           <div id="trend" className="col section">
-            <h4 className="section-title">Current Trend</h4>
+            <ChartContainer />
           </div>
           {/* Cases */}
           <div id="cases" className="col section">
@@ -83,7 +84,11 @@ function Home() {
               </div>
               <div className="col">
                 <p>Total</p>
-                <p className="data-result">{stateData.positive === undefined ? "N/A" : stateData.positive.toLocaleString()}</p>
+                <p className="data-result">
+                  {stateData.positive === undefined
+                    ? "N/A"
+                    : stateData.positive.toLocaleString()}
+                </p>
               </div>
             </div>
             <p className="mb-0 sub-header"><strong>{userCounty}</strong></p>
@@ -115,22 +120,27 @@ function Home() {
           <div id="events" className="col section">
             <h4 className="section-title">Watched Events</h4>
             <div id="watched">
-              { 
-                events.length === 0 
-                ? (
-                  <div className="text-center mb-5">
-                    <p>No events added yet.</p>
-                  </div>
-                ) 
-                : (
-                  events.map(event => (
+              {events.length === 0 ? (
+                <div className="text-center mb-5">
+                  <p>No events added yet.</p>
+                </div>
+              ) : (
+                events.map(event => (
                   <div className="dash-event">
-                    <Link to="/events"><p className="dash-event-title" style={{color: "black"}}>{event.title}</p></Link>
-                    <p className="dash-event-date">{moment(event.date).format('l')}</p>
+                    <Link to="/events">
+                      <p
+                        className="dash-event-title"
+                        style={{ color: "black" }}
+                      >
+                        {event.title}
+                      </p>
+                    </Link>
+                    <p className="dash-event-date">
+                      {moment(event.date).format("l")}
+                    </p>
                   </div>
-                  ))
-                )
-              }
+                ))
+              )}
             </div>
             <Link to="/new" className="btn btn-primary mt-3">
               + Add A New Event
