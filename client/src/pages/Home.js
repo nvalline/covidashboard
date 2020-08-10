@@ -50,7 +50,7 @@ function Home() {
   function getCountyResults(userS, userC) {
     let stateName = counties.find(state => state.id === userS).name;
     let cases = nytCounties.filter(county => county.county === userC && county.state === stateName);
-    return cases;
+    return JSON.parse(cases[0].cases).toLocaleString();
   }
 
 
@@ -96,7 +96,7 @@ function Home() {
               <div className="col">
                 <p>Total</p>
                 <p className="data-result">
-                  { userState == null ? "" : getCountyResults(userState, userCounty)[0].cases } 
+                  { userState == null ? "N/A" : getCountyResults(userState, userCounty) } 
                 </p>
               </div>
             </div>
@@ -131,7 +131,7 @@ function Home() {
                 </div>
               ) : (
                 events.map(event => (
-                  <div className="dash-event">
+                  <div className="dash-event" key={event._id}>
                     <Link to="/events">
                       <p
                         className="dash-event-title"
