@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Input, Select } from "../FormElements";
+import { Input } from "../FormElements";
+import StateSelect from "../StateSelect";
+import CountySelect from "../CountySelect";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -21,11 +23,17 @@ function RegisterForm() {
         if (errors.length > 0) {
             SetHasErrors(true);
         }
+
     }, [errors]);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setUser({ ...user, [name]: value })
+    };
+
+    const handleSelectChange = (event) => {
+        const { name, options } = event.target;
+        setUser({ ...user, [name]: options[event.target.selectedIndex].text })
     };
 
     const handleFormSubmit = (event) => {
@@ -78,18 +86,16 @@ function RegisterForm() {
                 value={user.password2}
             />
             <label htmlFor="state">Select Your State:</label>
-            <Select
+            <StateSelect
                 name="state"
                 id="state"
-                onChange={handleInputChange}
-                value={user.state}
+                onChange={handleSelectChange}
             />
-            <Input
-                type="text"
+            <CountySelect
                 name="county"
-                placeholder="County"
-                onChange={handleInputChange}
-                value={user.county}
+                id="county"
+                selectedstate={user.state === "" ? "AL" : user.state}
+                onChange={handleSelectChange}
             />
             <p>Or, <Link to={'/login'}>log in</Link></p>
             <SubmitBtn

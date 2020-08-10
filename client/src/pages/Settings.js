@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from "../utils/AuthContext";
-import { Input, Select } from "../components/FormElements";
+import CountySelect from "../components/CountySelect";
+import StateSelect from "../components/StateSelect";
 import SubmitBtn from "../components/SubmitBtn";
 import API from "../utils/API";
 import { toast } from "react-toastify";
@@ -37,12 +38,12 @@ function Settings() {
   }
 
   function handleStateChange(event) {
-    let newState = event.target.value;
+    let newState = event.target.options[event.target.selectedIndex].text;
     setNewUserState(newState);
   }
   
   function handleCountyChange(event) {
-    let newCounty = event.target.value;
+    let newCounty = event.target.options[event.target.selectedIndex].text;
     setNewUserCounty(newCounty);
   }
 
@@ -56,7 +57,7 @@ function Settings() {
       <h2 className="text-center mt-3 mb-5">User Settings</h2>
         <div className="row">
           <div className="col">
-            <Select
+            <StateSelect
                 name="state"
                 id="state"
                 label="User State:"
@@ -64,11 +65,11 @@ function Settings() {
             />
           </div>
           <div className="col">
-            <Input
+            <CountySelect
                 type="text"
                 id="county"
                 label="User County:"
-                placeholder="County"
+                selectedstate={newUserState}
                 onChange={handleCountyChange}
             />
           </div>

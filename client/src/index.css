@@ -48,6 +48,21 @@ html, body, #root {
   margin-bottom: 20px;
 }
 
+.sub-header {
+  background-color: #75ABDE;
+  color: white;
+  padding: 5px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.pocket {
+  border-left: 1px solid #D0D0D0;
+  border-right: 1px solid #D0D0D0;
+  border-bottom: 1px solid #D0D0D0;
+  border-radius: 0px 0px 5px 5px;
+  margin-bottom: 15px;
+}
+
 #watched {
   max-height: 200px;
   overflow-y: auto;

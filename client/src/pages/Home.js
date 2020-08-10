@@ -6,6 +6,9 @@ import API from "../utils/API";
 import ChartContainer from "../components/ChartContainer";
 import Symptoms from "../components/Symptoms";
 import moment from "moment-timezone";
+import nytCounties from "../components/nyt-counties-data.json";
+import counties from "../components/stateCounties.json";
+
 
 function Home() {
   const [stateData, setStateData] = useState({});
@@ -16,6 +19,7 @@ function Home() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
+
     API.getUser(authState.userId)
       .then(res => {
         let county = res.data.county;
@@ -40,7 +44,15 @@ function Home() {
         })
         .catch(err => console.log(err));
     }
-  }, [authState.userId]);
+
+  }, [authState.userId])
+
+  function getCountyResults(userS, userC) {
+    let stateName = counties.find(state => state.id === userS).name;
+    let cases = nytCounties.filter(county => county.county === userC && county.state === stateName);
+    return JSON.parse(cases[0].cases).toLocaleString();
+  }
+
 
   return (
     <div className="mb-5">
@@ -51,10 +63,8 @@ function Home() {
           </span>
         </div>
         <div className="col icon">
-          <span>
-            <i className="fa fa-map-marker"></i> {userState} / {userCounty}{" "}
-            County
-          </span>
+        <span><i className="fa fa-map-marker"></i> {userState} / {userCounty}
+        </span>
         </div>
       </div>
       <div className="sections">
@@ -66,7 +76,8 @@ function Home() {
           {/* Cases */}
           <div id="cases" className="col section">
             <h4 className="section-title">Positive Cases</h4>
-            <div className="row">
+            <h5 className="mb-0 sub-header">{userState}</h5>
+            <div className="row pocket">
               <div className="col">
                 <p>New</p>
                 <p className="data-result">{stateData.positiveIncrease}</p>
@@ -80,7 +91,20 @@ function Home() {
                 </p>
               </div>
             </div>
-            <p>{userCounty} County: (Get County Data)</p>
+            <h5 className="mb-0 sub-header">{userCounty}</h5>
+            <div className="row pocket">
+              <div className="col">
+                <p>Total</p>
+                <p className="data-result">
+                  { userState == null ? "N/A" : getCountyResults(userState, userCounty) } 
+                </p>
+              </div>
+            </div>
+            <div className="text-center mt-3 mb-3">
+              <Link to="/current" className="btn btn-primary">
+                  See Current Data
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -90,7 +114,7 @@ function Home() {
             <h4 className="section-title">Symptoms</h4>
             <div className="text-left">
               <Symptoms />
-              <div className="text-center mt-1">
+              <div className="text-center mt-3 mb-3">
                 <Link to="/testing" className="btn btn-primary">
                   Get Tested
                 </Link>
@@ -107,7 +131,7 @@ function Home() {
                 </div>
               ) : (
                 events.map(event => (
-                  <div className="dash-event">
+                  <div className="dash-event" key={event._id}>
                     <Link to="/events">
                       <p
                         className="dash-event-title"
@@ -123,7 +147,7 @@ function Home() {
                 ))
               )}
             </div>
-            <Link to="/new" className="btn btn-primary mt-3">
+            <Link to="/new" className="btn btn-primary mt-3 mb-3">
               + Add A New Event
             </Link>
           </div>

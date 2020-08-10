@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import DesktopNav from "./components/DesktopNav/DesktopNav";
 import MobileNav from "./components/MobileNav/MobileNav";
-import Footer from "./components/Footer";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -20,11 +19,14 @@ import { NotificationProvider } from "./utils/NotificationContext";
 import { AuthContext } from "./utils/AuthContext";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import API from "./utils/API";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./toast.css";
 
 toast.configure();
+
+API.convertCounties();
 
 function App() {
   const [authState, setAuthState] = useContext(AuthContext);
@@ -39,6 +41,7 @@ function App() {
     } else {
       setAuthState({ isAuthenticated: false, userId: null });
     }
+
   }, [isAuthenticated, setAuthState, userId]);
 
   const handleLogout = event => {
@@ -118,7 +121,6 @@ function App() {
             )}
           </Route>
         </Switch>
-        <Footer />
       </Router>
     </NotificationProvider>
   );
