@@ -80,7 +80,9 @@ function Home() {
             <div className="row pocket">
               <div className="col">
                 <p>New</p>
-                <p className="data-result">{stateData.positiveIncrease}</p>
+                <p className="data-result">{ stateData.positiveIncrease === undefined
+                    ? "N/A"
+                    : stateData.positiveIncrease.toLocaleString()}</p>
               </div>
               <div className="col">
                 <p>Total</p>
@@ -98,11 +100,12 @@ function Home() {
                 <p className="data-result">
                   { userState == null ? "N/A" : getCountyResults(userState, userCounty) } 
                 </p>
+                <div className="text-center mb-2">County Data Source: <a href="https://github.com/nytimes/covid-19-data">New York Times</a></div>
               </div>
             </div>
             <div className="text-center mt-3 mb-3">
               <Link to="/current" className="btn btn-primary">
-                  See Current Data
+                  See More Data
               </Link>
             </div>
           </div>

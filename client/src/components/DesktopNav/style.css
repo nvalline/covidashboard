@@ -6,9 +6,8 @@
     color: white;
 }
 
-.fa {
-    padding: 0;
-    color: black;
+.nav-item i {
+    margin-right: 5px;
 }
 
 .nav-item {
@@ -25,7 +24,6 @@ a.nav-link {
     display: flex;
     align-items: center;
     padding-left: 0 !important;
-    margin-right: 25px !important;
 }
 
 a.nav-link:hover, a.nav-link:hover i {

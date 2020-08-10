@@ -9,6 +9,15 @@ html, body, #root {
   height: 100%;
 }
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  margin-right: 15px;
+}
+
 .user-info {
   margin: 0px 40px;
   margin-top: 20px;
