@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import DesktopNav from "./components/DesktopNav/DesktopNav";
 import MobileNav from "./components/MobileNav/MobileNav";
-import Footer from "./components/Footer";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
