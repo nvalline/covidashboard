@@ -5,16 +5,21 @@ import axios from "axios";
 import API from "../utils/API";
 import Symptoms from "../components/Symptoms";
 import moment from "moment-timezone";
+import nytCounties from "../components/nyt-counties-data.json";
+import counties from "../components/stateCounties.json";
+
 
 function Home() {
   const [stateData, setStateData] = useState({});
   const [userEmail, setUserEmail] = useState();
   const [authState] = useContext(AuthContext);
   const [userState, setUserState] = useState();
+  const [userStateName, setUserStateName] = useState();
   const [userCounty, setUserCounty] = useState();
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
+
     API.getUser(authState.userId)
       .then(res => {
         let county = res.data.county;
@@ -43,6 +48,12 @@ function Home() {
 
   }, [authState.userId])
 
+  function getCountyResults(userS, userC) {
+    let stateName = counties.find(state => state.id === userS).name;
+    let cases = nytCounties.filter(county => county.county === userC && county.state === stateName);
+    return cases;
+  }
+
 
   return (
     <div className="mb-5">
@@ -52,7 +63,7 @@ function Home() {
           </span>
         </div>
         <div className="col icon">
-        <span><i className="fa fa-map-marker"></i> {userState} / {userCounty} County
+        <span><i className="fa fa-map-marker"></i> {userState} / {userCounty}
         </span>
         </div>
       </div>
@@ -65,6 +76,7 @@ function Home() {
           {/* Cases */}
           <div id="cases" className="col section">
             <h4 className="section-title">Positive Cases</h4>
+            <p className="mb-0 sub-header"><strong>{userState}</strong></p>
             <div className="row">
               <div className="col">
                 <p>New</p>
@@ -75,7 +87,21 @@ function Home() {
                 <p className="data-result">{stateData.positive === undefined ? "N/A" : stateData.positive.toLocaleString()}</p>
               </div>
             </div>
-            <p>{userCounty} County: (Get County Data)</p>
+            <p className="mb-0 sub-header"><strong>{userCounty}</strong></p>
+            <div className="row">
+              {/* <div className="col">
+                <p>deaths</p>
+                <p className="data-result">
+                  { userState == null ? "" : getCountyResults(userState, userCounty)[0].deaths } 
+                </p>
+              </div> */}
+              <div className="col">
+                <p>Total</p>
+                <p className="data-result">
+                  { userState == null ? "" : getCountyResults(userState, userCounty)[0].cases } 
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 

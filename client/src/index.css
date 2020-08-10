@@ -48,6 +48,11 @@ html, body, #root {
   margin-bottom: 20px;
 }
 
+.sub-header {
+  background-color: #d4e6f6;
+  border-radius: 5px 5px 0px 0px;
+}
+
 #watched {
   max-height: 200px;
   overflow-y: auto;

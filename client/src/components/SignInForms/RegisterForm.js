@@ -31,6 +31,11 @@ function RegisterForm() {
         setUser({ ...user, [name]: value })
     };
 
+    const handleSelectChange = (event) => {
+        const { name, options } = event.target;
+        setUser({ ...user, [name]: options[event.target.selectedIndex].text })
+    };
+
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
@@ -84,12 +89,13 @@ function RegisterForm() {
             <StateSelect
                 name="state"
                 id="state"
-                onChange={handleInputChange}
+                onChange={handleSelectChange}
             />
             <CountySelect
                 name="county"
                 id="county"
-                onChange={handleInputChange}
+                selectedstate={user.state === "" ? "AL" : user.state}
+                onChange={handleSelectChange}
             />
             <p>Or, <Link to={'/login'}>log in</Link></p>
             <SubmitBtn

@@ -38,12 +38,12 @@ function Settings() {
   }
 
   function handleStateChange(event) {
-    let newState = event.target.value;
+    let newState = event.target.options[event.target.selectedIndex].text;
     setNewUserState(newState);
   }
   
   function handleCountyChange(event) {
-    let newCounty = event.target.value;
+    let newCounty = event.target.options[event.target.selectedIndex].text;
     setNewUserCounty(newCounty);
   }
 
