@@ -9,11 +9,37 @@ html, body, #root {
   height: 100%;
 }
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  margin-right: 15px;
+}
+
+.about {
+  color: #75ABDE;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.register {
+  padding: 35px;
+  border: 1px solid #75ABDE;
+  border-radius: 10px;
+}
+
 .user-info {
   margin: 0px 40px;
   margin-top: 20px;
   font-size: 1.25rem;
   text-align: center;
+}
+
+.encrypt {
+  color: #979797;
 }
 
 .icon {
