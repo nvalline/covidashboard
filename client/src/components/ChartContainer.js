@@ -38,7 +38,7 @@ const ChartData = props => {
 
           for (let i = 0; i < 13; i++) {
             dataset.testDates.push(
-              moment(res.data[i].dateChecked).format("MMMM Do")
+              moment(res.data[i].dateChecked).format("MM/DD")
             );
             dataset.increaseHos.push(res.data[i].hospitalizedIncrease);
             dataset.positiveTests.push(res.data[i].positiveIncrease);

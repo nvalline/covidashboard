@@ -63,8 +63,9 @@ function Home() {
           </span>
         </div>
         <div className="col icon">
-        <span><i className="fa fa-map-marker"></i> {userState} / {userCounty}
-        </span>
+          <span>
+            <i className="fa fa-map-marker"></i> {userState} / {userCounty}
+          </span>
         </div>
       </div>
       <div className="sections">
@@ -80,7 +81,9 @@ function Home() {
             <div className="row pocket">
               <div className="col">
                 <p>New</p>
-                <p className="data-result">{stateData.positiveIncrease}</p>
+                <p className="data-result">{ stateData.positiveIncrease === undefined
+                    ? "N/A"
+                    : stateData.positiveIncrease.toLocaleString()}</p>
               </div>
               <div className="col">
                 <p>Total</p>
@@ -102,7 +105,7 @@ function Home() {
             </div>
             <div className="text-center mt-3 mb-3">
               <Link to="/current" className="btn btn-primary">
-                  See Current Data
+                  See More Data
               </Link>
             </div>
           </div>

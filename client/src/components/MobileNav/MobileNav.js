@@ -9,7 +9,7 @@ function MobileNav({ handleLogout }) {
 
     return (
         <nav className="navbar-ft fixed-bottom navbar-expand-lg">
-            <div className="row icon-container">
+            <div className="row">
                 <div className="ft-icon">
                     <Link to={'/'} className="nav-link"><i className="fa fa-home"></i></Link>
                 </div>

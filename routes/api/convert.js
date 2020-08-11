@@ -6,8 +6,8 @@ const axios = require("axios");
 
 router.get("/", (req, res) => {
     axios.get("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv", {headers:{"Content-Type" : "text/csv"}})
-    .then(res => {
-        let converted = Papa.parse(res.data, { header: true });
+    .then(res2 => {
+        let converted = Papa.parse(res2.data, { header: true });
         let latest = converted.data.slice(converted.data.length - 3221);
         let counties = [];
         for (let i = 0; i < latest.length; i++) {
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
             }
         }
         saveConvertedData(counties, "counties");
-        res2.sendStatus(200);
+        res.sendStatus(200);
     })
     .catch(err => console.log(err));
 })
