@@ -60,9 +60,7 @@ const ChartData = props => {
     }
   }, [authState.userId, userState, lowercaseState]);
 
-  return userState === undefined ? (
-    ""
-  ) : (
+  return (
     <ChartJS
       state={userState}
       testDates={testDates}
