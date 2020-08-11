@@ -16,6 +16,14 @@ const PORT = process.env.PORT || 3001;
 // Connect to Database
 const MONGO_LOCAL_URI = require("./config/keys").MongoURI;
 
+console.log('======================================')
+console.log('======================================')
+console.log("PROCESS.ENV");
+console.log(process.env);
+console.log('======================================')
+console.log('======================================')
+
+
 mongoose
     .connect(process.env.MONGODB_URI || MONGO_LOCAL_URI, {
         useNewUrlParser: true,
