@@ -20,9 +20,6 @@ function MobileNav({ handleLogout }) {
                     <Link to={'/events'} className="nav-link"><i className="fa fa-calendar-o"></i></Link>
                 </div>
                 <div className="ft-icon">
-                    <Link to={'/new'} className="nav-link"><i className="fa fa-plus"></i></Link>
-                </div>
-                <div className="ft-icon">
                     <Link to={'/testing'} className="nav-link"><i className="fa fa-map-marker"></i></Link>
                 </div>
                 <div className="ft-icon">
