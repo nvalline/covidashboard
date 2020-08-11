@@ -3,9 +3,9 @@ import React from "react";
 function Symptoms() {
     return (
         <div className="symptoms">
-        <h5>COVID-19 symptoms may appear 2-14 days after exposure to the virus:</h5>
+            <h5 className="pr-3 pl-3 text-center">COVID-19 symptoms may appear 2-14 days after exposure to the virus:</h5>
             <div className="row">
-                <div className="col">
+                <div className="col text-left">
                     <ul>
                         <li>Fever or Chills</li>
                         <li>Shortness of breath or difficulty breathing</li>
@@ -14,7 +14,7 @@ function Symptoms() {
                         <li>Headache</li>
                     </ul>
                 </div>
-                <div className="col">
+                <div className="col text-left">
                     <ul>
                         <li>New loss of taste or smell</li>
                         <li>Sore Throat</li>

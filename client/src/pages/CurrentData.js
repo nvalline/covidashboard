@@ -27,6 +27,7 @@ const CurrentData = () => {
     <div className="container-fluid">
       <h3 className="text-center mt-3">Current Data for {userState}</h3>
       <SearchResults stateData={stateData} />
+      <div className="text-center mb-5">Data Source: <a href="https://covidtracking.com/">The Covid Tracking Project</a></div>
     </div>
   );
 };

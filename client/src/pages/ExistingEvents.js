@@ -14,7 +14,6 @@ function ExistingEvents() {
     function loadUserEvents() {
       API.getEventsByUser(authState.userId)
         .then(res => {
-          console.log(res.data)
           setEvents(res.data);
         })
         .catch(err => console.log(err));
@@ -45,10 +44,6 @@ function ExistingEvents() {
       {events.length === 0 ? (
         <div className="text-center mb-5">
           <p>No events added yet.</p>
-          <br></br>
-          <Link to="/new" className="btn btn-lg btn-primary">
-            + Add A New Event
-          </Link>
         </div>
       ) : (
         events.map(event => (
@@ -68,6 +63,11 @@ function ExistingEvents() {
           />
         ))
       )}
+      <div className="text-center mt-5">
+        <Link to="/new" className="btn btn-lg btn-primary">
+          + Add A New Event
+        </Link>
+      </div>
     </div>
   );
 }

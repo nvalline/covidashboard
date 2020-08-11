@@ -8,6 +8,9 @@ export default {
   getUser: function (id) {
     return axios.get("/api/user/get/" + id);
   },
+  updateUser: function (id, state, county) {
+    return axios.get("/api/user/update/" + id + "/" + state + "/" + county);
+  },
   getEventsByUser: function (id) {
     return axios.get("/api/user/" + id);
   },
@@ -22,5 +25,9 @@ export default {
   // Saves a event to the database
   saveEvent: function (eventData) {
     return axios.post("/api/events", eventData);
+  },
+  // Updates NY Times Counties
+  convertCounties: function () {
+    return axios.get("/api/convert");
   },
 };
