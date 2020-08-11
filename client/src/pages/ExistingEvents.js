@@ -10,7 +10,7 @@ function ExistingEvents() {
   // Setting our component's initial state
   const [events, setEvents] = useContext(EventsContext);
   const [authState] = useContext(AuthContext);
-  console.log("EXISTING EVENTS:", events)
+
   // Load all events and store them with setEvents
   useEffect(() => {
     function loadUserEvents() {
@@ -29,6 +29,7 @@ function ExistingEvents() {
     API.getEventsByUser(authState.userId)
       .then(res => {
         setEvents(res.data);
+        // update IndexedDB data
         IDB.updateIDB(res.data);
       })
       .catch(err => console.log(err));
@@ -38,10 +39,11 @@ function ExistingEvents() {
   function deleteEvent(id) {
     if (!navigator.onLine) {
       console.log("NAVIGATOR OFFLINE")
+    } else {
+      API.deleteEvent(id)
+        .then(res => loadEvents())
+        .catch(err => console.log(err));
     }
-    API.deleteEvent(id)
-      .then(res => loadEvents())
-      .catch(err => console.log(err));
   }
 
   return (

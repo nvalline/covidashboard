@@ -8,6 +8,7 @@ import ChartContainer from "../components/ChartContainer";
 import Symptoms from "../components/Symptoms";
 import moment from "moment-timezone";
 import nytCounties from "../components/nyt-counties-data.json";
+import counties from "../components/stateCounties.json";
 import IDB from "../utils/IDB";
 
 function Home() {
@@ -17,8 +18,6 @@ function Home() {
   const [userState, setUserState] = useState();
   const [userCounty, setUserCounty] = useState();
   const [events, setEvents] = useContext(EventsContext);
-
-  // console.log("NAVIGATOR:", navigator)
 
   useEffect(() => {
     API.getUser(authState.userId)
@@ -41,7 +40,6 @@ function Home() {
 
     function getEvents() {
       if (events !== undefined && events.length > 0) {
-        // console.log("HOME EVENTS:", events)
       } else {
         API.getEventsByUser(authState.userId)
           .then(res => {
@@ -51,7 +49,6 @@ function Home() {
           .catch(err => console.log(err));
       }
     }
-
   }, [authState.userId, events])
 
   function getCountyResults(userS, userC) {
@@ -96,7 +93,7 @@ function Home() {
                 </p>
               </div>
             </div>
-            <h5 className="mb-0 sub-header">{userCounty}</h5>
+            <h5 className="mb-0 sub-header">{userCounty} County</h5>
             <div className="row pocket">
               <div className="col">
                 <p>Total</p>
