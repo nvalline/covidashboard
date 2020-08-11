@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import DB from "./tiny-idb";
-import UniqueString from "./unique-string";
 import suspender from "./suspender";
-
-const uid = new UniqueString();
+import API from "../utils/API";
 
 async function setUpDatabase() {
-    "use strict";
-
     await DB.createDB("ContactTracingDb", 1, [{
         name: "events",
         config: { autoIncrement: true }
@@ -16,6 +12,24 @@ async function setUpDatabase() {
 
 const EventsContext = React.createContext();
 
+const fetchMDB = (id) => {
+    API.getEvent(id)
+        .then(res => {
+            console.log("RES:", res)
+        })
+        .catch(err => console.log("NO FILE:", err));
+}
+
+const syncDbs = async (idbData) => {
+    const IDB = idbData;
+    let eventId = IDB[IDB.length - 1];
+    eventId = eventId._id;
+    console.log("SYNC IDB:", IDB)
+    console.log("IDB ID:", eventId)
+    const MDB = await fetchMDB(eventId);
+    console.log("SYNC MDB:", MDB)
+}
+
 async function getAllEvents() {
     await setUpDatabase();
 
@@ -23,9 +37,12 @@ async function getAllEvents() {
 
     const eventStore = await DB.transaction(db, ["events"], "readwrite").getStore("events");
 
-
     let allEvents = await DB.getAllObjectData(eventStore);
+
     allEvents = allEvents.pop();
+
+    syncDbs(allEvents);
+
     return allEvents;
 }
 

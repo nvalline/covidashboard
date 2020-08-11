@@ -36,6 +36,9 @@ function ExistingEvents() {
 
   // Deletes an evnt from the database with a given id, then reloads events from the db
   function deleteEvent(id) {
+    if (!navigator.onLine) {
+      console.log("NAVIGATOR OFFLINE")
+    }
     API.deleteEvent(id)
       .then(res => loadEvents())
       .catch(err => console.log(err));

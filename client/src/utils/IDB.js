@@ -8,6 +8,6 @@ export default {
 
         const newIdbEvents = await DB.addObjectData(eventStore, newIdbData)
 
-        return newIdbData;
+        return newIdbEvents;
     }
 }

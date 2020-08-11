@@ -16,7 +16,7 @@ function Home() {
   const [userCounty, setUserCounty] = useState();
   const [events, setEvents] = useContext(EventsContext);
 
-  console.log("HOME EVENTS:", events)
+  // console.log("NAVIGATOR:", navigator)
 
   useEffect(() => {
     API.getUser(authState.userId)
