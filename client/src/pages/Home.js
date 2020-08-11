@@ -32,6 +32,7 @@ function Home() {
         let state = res.data.state.toLowerCase();
         axios.get(`/api/current/${state}`)
           .then(res2 => {
+            console.log("RES2 DATA:", res2.data)
             setStateData(res2.data);
             getEvents();
           })
@@ -59,6 +60,7 @@ function Home() {
 
   return (
     <div className="">
+      {console.log("STATEDATA:", stateData)}
       <div className="row user-info">
         <div className="col icon">
           <span><i className="fa fa-user-circle-o"></i> {userEmail}
@@ -130,7 +132,7 @@ function Home() {
           <div id="events" className="col section">
             <h4 className="section-title">Watched Events</h4>
             <div id="watched">
-              {events.length === 0 ? (
+              {!events || events.length === 0 ? (
                 <div className="text-center mb-5">
                   <p>No events added yet.</p>
                 </div>

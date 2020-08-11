@@ -53,7 +53,7 @@ function App() {
   };
 
   const loginRedirect = () => {
-    toast.info("Please login");
+    toast.info("Please login")
     return (
       <Redirect to="/login" />
     )
@@ -68,6 +68,7 @@ function App() {
           hideProgressBar={true}
           newestOnTop={false}
           pauseOnHover={false}
+          limit={1}
         />
         {window.innerWidth > 1080 ? (
           <DesktopNav handleLogout={handleLogout} />
@@ -90,32 +91,16 @@ function App() {
             {authState.isAuthenticated === true ? <NewEvent /> : loginRedirect}
           </Route>
           <Route exact path="/events">
-            {authState.isAuthenticated === true ? (
-              <ExistingEvents />
-            ) : (
-                loginRedirect
-              )}
+            {authState.isAuthenticated === true ? <ExistingEvents /> : loginRedirect}
           </Route>
           <Route exact path="/current">
-            {authState.isAuthenticated === true ? (
-              <CurrentData />
-            ) : (
-                loginRedirect
-              )}
+            {authState.isAuthenticated === true ? <CurrentData /> : loginRedirect}
           </Route>
           <Route exact path="/testing">
-            {authState.isAuthenticated === true ? (
-              <TestingSites />
-            ) : (
-                loginRedirect
-              )}
+            {authState.isAuthenticated === true ? <TestingSites /> : loginRedirect}
           </Route>
           <Route exact path="/settings">
-            {authState.isAuthenticated === true ? (
-              <Settings />
-            ) : (
-              loginRedirect
-            )}
+            {authState.isAuthenticated === true ? <Settings /> : loginRedirect}
           </Route>
         </Switch>
       </Router>
