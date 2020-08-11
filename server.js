@@ -52,21 +52,12 @@ app.use("/auth", auth);
 const routes = require("./routes");
 app.use(routes);
 
-app.use(express.static("client/build"));
-app.use("*", (req, res) =>
-    res.sendFile(path.join(__dirname, "./client/build/index.html"))
-);
-
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static("client/build"));
-//     app.get("*", (req, res) =>
-//         res.sendFile(path.join(__dirname, "./index.html"))
-//     );
-// } else {
-//     app.get("*", (req, res) => {
-//         res.sendFile(path.join(__dirname, "./client/public/index.html"));
-//     });
-// }
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+    app.get("*", (req, res) =>
+        res.sendFile(path.join(__dirname, "./index.html"))
+    );
+} 
 
 app.listen(PORT, () => {
     console.log(`Server listening on PORT: ${PORT}`);

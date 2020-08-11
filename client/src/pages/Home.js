@@ -58,7 +58,7 @@ function Home() {
   }
 
   return (
-    <div className="">
+    <div className="mm-15">
       <div className="row user-info">
         <div className="col icon">
           <span><i className="fa fa-user-circle-o"></i> {userEmail}
@@ -75,6 +75,36 @@ function Home() {
           {/* Trend */}
           <div id="trend" className="col section">
             <ChartContainer />
+          </div>
+          {/* Events */}
+          <div id="events" className="col section">
+            <h4 className="section-title">Watched Events</h4>
+            <div id="watched">
+              {!events || events.length === 0 ? (
+                <div className="text-center mb-5">
+                  <p>No events added yet.</p>
+                </div>
+              ) : (
+                  events.map(event => (
+                    <div className="dash-event" key={event._id}>
+                      <Link to="/events">
+                        <p
+                          className="dash-event-title"
+                          style={{ color: "black" }}
+                        >
+                          {event.title}
+                        </p>
+                      </Link>
+                      <p className="dash-event-date">
+                        {moment(event.date).format("l")}
+                      </p>
+                    </div>
+                  ))
+                )}
+            </div>
+            <Link to="/new" className="btn btn-primary mt-3 mb-3">
+              + Add A New Event
+            </Link>
           </div>
           {/* Cases */}
           <div id="cases" className="col section">
@@ -125,36 +155,6 @@ function Home() {
                 </Link>
               </div>
             </div>
-          </div>
-          {/* Events */}
-          <div id="events" className="col section">
-            <h4 className="section-title">Watched Events</h4>
-            <div id="watched">
-              {events.length === 0 ? (
-                <div className="text-center mb-5">
-                  <p>No events added yet.</p>
-                </div>
-              ) : (
-                  events.map(event => (
-                    <div className="dash-event" key={event._id}>
-                      <Link to="/events">
-                        <p
-                          className="dash-event-title"
-                          style={{ color: "black" }}
-                        >
-                          {event.title}
-                        </p>
-                      </Link>
-                      <p className="dash-event-date">
-                        {moment(event.date).format("l")}
-                      </p>
-                    </div>
-                  ))
-                )}
-            </div>
-            <Link to="/new" className="btn btn-primary mt-3 mb-3">
-              + Add A New Event
-            </Link>
           </div>
         </div>
       </div>

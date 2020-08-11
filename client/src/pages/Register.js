@@ -4,17 +4,19 @@ import About from "../components/About";
 
 function Register() {
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col">
-                    <About />
+        <div className="mm-15">
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <About />
+                    </div>
+                    <div className="col">
+                        <RegisterForm />
+                    </div>
                 </div>
-                <div className="col">
-                    <RegisterForm />
-                </div>
+                
+                <p className="text-center mt-5">&copy; Copyright 2020</p>
             </div>
-            
-            <p className="text-center mt-5">&copy; Copyright 2020</p>
         </div>
     )
 }

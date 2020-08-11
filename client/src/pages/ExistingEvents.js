@@ -47,34 +47,36 @@ function ExistingEvents() {
   }
 
   return (
-    <div className="container">
-      <h2 className="text-center mt-3 mb-5">My Tracked Events</h2>
-      {!events || events.length === 0 ? (
-        <div className="text-center mb-5">
-          <p>No events added yet.</p>
+    <div className="mm-15">
+      <div className="container">
+        <h2 className="text-center mt-3 mb-5">My Tracked Events</h2>
+        {!events || events.length === 0 ? (
+          <div className="text-center mb-5">
+            <p>No events added yet.</p>
+          </div>
+        ) : (
+            events.map(event => (
+              <Event
+                key={event._id}
+                title={event.title}
+                date={event.date}
+                notes={event.notes}
+                noticeDate={event.noticeDate}
+                button={() => (
+                  <button
+                    onClick={() => deleteEvent(event._id)}
+                  >
+                    <i className="fa fa-trash"></i>
+                  </button>
+                )}
+              />
+            ))
+          )}
+        <div className="text-center mt-5">
+          <Link to="/new" className="btn btn-lg btn-primary">
+            + Add A New Event
+          </Link>
         </div>
-      ) : (
-          events.map(event => (
-            <Event
-              key={event._id}
-              title={event.title}
-              date={event.date}
-              notes={event.notes}
-              noticeDate={event.noticeDate}
-              button={() => (
-                <button
-                  onClick={() => deleteEvent(event._id)}
-                >
-                  <i className="fa fa-trash"></i>
-                </button>
-              )}
-            />
-          ))
-        )}
-      <div className="text-center mt-5">
-        <Link to="/new" className="btn btn-lg btn-primary">
-          + Add A New Event
-        </Link>
       </div>
     </div>
   );
