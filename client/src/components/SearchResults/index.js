@@ -3,11 +3,11 @@ import "./style.css";
 import moment from "moment-timezone";
 
 function SearchResults(props) {  
-
+  
   return (
     <div className="text-center">
       <div className="text-center">
-        <p>Last Checked: {moment(props.stateData.dateModified).tz('America/New_York').format('MMMM Do, YYYY h:mm')} PM</p>
+        <p>As of: {props.stateData.date == null ? "N/A" : moment(props.stateData.date, "YYYYMMDD").format('MMMM Do, YYYY')}</p>
       </div>
 
       <div className="data-group">

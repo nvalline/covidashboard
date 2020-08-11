@@ -61,48 +61,54 @@ function RegisterForm() {
 
 
     return (
-        <form className="m-3">
-            <label>Create Account</label>
+        <form className="mt-4 register">
+            <h3>Create Account</h3>
             {hasErrors && errors.map(error => <ErrorMessages error={error} key={uuid()} />)}
-            <Input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                onChange={handleInputChange}
-                value={user.email}
-            />
-            <Input
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={handleInputChange}
-                value={user.password}
-            />
-            <Input
-                type="password"
-                name="password2"
-                placeholder="Confirm Password"
-                onChange={handleInputChange}
-                value={user.password2}
-            />
-            <label htmlFor="state">Select Your State:</label>
-            <StateSelect
-                name="state"
-                id="state"
-                onChange={handleSelectChange}
-            />
-            <CountySelect
-                name="county"
-                id="county"
-                selectedstate={user.state === "" ? "AL" : user.state}
-                onChange={handleSelectChange}
-            />
-            <p>Or, <Link to={'/login'}>log in</Link></p>
+            <div className="mb-5">
+                <Input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    onChange={handleInputChange}
+                    value={user.email}
+                />
+                <Input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleInputChange}
+                    value={user.password}
+                />
+                <Input
+                    type="password"
+                    name="password2"
+                    placeholder="Confirm Password"
+                    onChange={handleInputChange}
+                    value={user.password2}
+                />
+            </div>
+            <div className="mb-5">
+                <StateSelect
+                    name="state"
+                    id="state"
+                    label="State"
+                    onChange={handleSelectChange}
+                />
+                <CountySelect
+                    name="county"
+                    id="county"
+                    label="County"
+                    selectedstate={user.state === "" ? "AL" : user.state}
+                    onChange={handleSelectChange}
+                />
+            </div>
             <SubmitBtn
                 text="Sign Up"
                 name="signUp"
                 onClick={handleFormSubmit}
-            />
+                />
+            <p className="mt-3">Or, <Link to={'/login'}>Log in</Link></p>
+            <p className="mt-3 encrypt">Your password is encrypted.</p>
         </form>
     )
 }
