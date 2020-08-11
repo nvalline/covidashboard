@@ -1,10 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import DesktopNav from "./components/DesktopNav/DesktopNav";
 import MobileNav from "./components/MobileNav/MobileNav";
 import Register from "./pages/Register";
@@ -58,8 +53,10 @@ function App() {
   };
 
   const loginRedirect = () => {
-    toast.warn("Please login");
-    return <Redirect to="/login" />;
+    toast.info("Please login");
+    return (
+      <Redirect to="/login" />
+    )
   };
 
   return (
@@ -75,8 +72,8 @@ function App() {
         {window.innerWidth > 1080 ? (
           <DesktopNav handleLogout={handleLogout} />
         ) : (
-          <MobileNav handleLogout={handleLogout} />
-        )}
+            <MobileNav handleLogout={handleLogout} />
+          )}
         {/* <Nav /> */}
         <Switch>
           <Route exact path="/">
@@ -96,22 +93,22 @@ function App() {
             {authState.isAuthenticated === true ? (
               <ExistingEvents />
             ) : (
-              loginRedirect
-            )}
+                loginRedirect
+              )}
           </Route>
           <Route exact path="/current">
             {authState.isAuthenticated === true ? (
               <CurrentData />
             ) : (
-              loginRedirect
-            )}
+                loginRedirect
+              )}
           </Route>
           <Route exact path="/testing">
             {authState.isAuthenticated === true ? (
               <TestingSites />
             ) : (
-              loginRedirect
-            )}
+                loginRedirect
+              )}
           </Route>
           <Route exact path="/settings">
             {authState.isAuthenticated === true ? (
