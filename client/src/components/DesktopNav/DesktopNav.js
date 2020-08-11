@@ -10,7 +10,7 @@ function DesktopNav({ handleLogout }) {
     return (
         <nav className="navbar navbar-expand-lg" >
             <a className="navbar-brand" href="/">
-                <img src="/img/mask.svg" style={{width:"50px"}} alt="mask" className="mr-2"></img> COVID-19 TRACKER
+                <img src="/img/covid.svg" style={{width:"50px"}} alt="mask" className="mr-2"></img> COVID-19 TRACKER
             </a>
             <li className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <i className="fa fa-bars"></i>

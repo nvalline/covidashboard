@@ -2,7 +2,7 @@
     background-color: #75ABDE;
 }
 
-.navbar a {
+.navbar a, .navbar i {
     color: white;
 }
 
