@@ -1,7 +1,7 @@
 {
-  "name": "covid-19-tracker",
+  "name": "covidashboard",
   "version": "1.0.0",
-  "description": "COVID-19 TRACKER",
+  "description": "COVIDashboard",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
