@@ -19,7 +19,6 @@ const ChartData = props => {
       .then(res => {
         let lowerState = res.data.state.toLowerCase();
         setlowercaseState(lowerState);
-        chartData();
       })
       .catch(err => console.log(err));
 
@@ -54,6 +53,10 @@ const ChartData = props => {
           a > b ? setTrend("higher") : setTrend("lower");
         })
         .catch(err => console.log(err));
+    }
+
+    if (lowercaseState) {
+      chartData();
     }
   }, [authState.userId, userState, lowercaseState]);
 
