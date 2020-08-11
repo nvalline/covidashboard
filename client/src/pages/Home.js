@@ -4,8 +4,10 @@ import { AuthContext } from "../utils/AuthContext";
 import { EventsContext } from "../utils/EventsContext";
 import axios from "axios";
 import API from "../utils/API";
+import ChartContainer from "../components/ChartContainer";
 import Symptoms from "../components/Symptoms";
 import moment from "moment-timezone";
+import nytCounties from "../components/nyt-counties-data.json";
 import IDB from "../utils/IDB";
 
 function Home() {
@@ -52,7 +54,11 @@ function Home() {
 
   }, [authState.userId, events])
 
-
+  function getCountyResults(userS, userC) {
+    let stateName = counties.find(state => state.id === userS).name;
+    let cases = nytCounties.filter(county => county.county === userC && county.state === stateName);
+    return JSON.parse(cases[0].cases).toLocaleString();
+  }
 
   return (
     <div className="">
@@ -70,22 +76,40 @@ function Home() {
         <div className="row">
           {/* Trend */}
           <div id="trend" className="col section">
-            <h4 className="section-title">Current Trend</h4>
+            <ChartContainer />
           </div>
           {/* Cases */}
           <div id="cases" className="col section">
             <h4 className="section-title">Positive Cases</h4>
-            <div className="row">
+            <h5 className="mb-0 sub-header">{userState}</h5>
+            <div className="row pocket">
               <div className="col">
                 <p>New</p>
                 <p className="data-result">{stateData.positiveIncrease}</p>
               </div>
               <div className="col">
                 <p>Total</p>
-                <p className="data-result">{stateData.positive === undefined ? "N/A" : stateData.positive.toLocaleString()}</p>
+                <p className="data-result">
+                  {stateData.positive === undefined
+                    ? "N/A"
+                    : stateData.positive.toLocaleString()}
+                </p>
               </div>
             </div>
-            <p>{userCounty} County: (Get County Data)</p>
+            <h5 className="mb-0 sub-header">{userCounty}</h5>
+            <div className="row pocket">
+              <div className="col">
+                <p>Total</p>
+                <p className="data-result">
+                  {userState == null ? "N/A" : getCountyResults(userState, userCounty)}
+                </p>
+              </div>
+            </div>
+            <div className="text-center mt-3 mb-3">
+              <Link to="/current" className="btn btn-primary">
+                See Current Data
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -95,28 +119,40 @@ function Home() {
             <h4 className="section-title">Symptoms</h4>
             <div className="text-left">
               <Symptoms />
+              <div className="text-center mt-3 mb-3">
+                <Link to="/testing" className="btn btn-primary">
+                  Get Tested
+                </Link>
+              </div>
             </div>
           </div>
           {/* Events */}
           <div id="events" className="col section">
             <h4 className="section-title">Watched Events</h4>
-            {
-              !events || events.length === 0
-                ? (
-                  <div className="text-center mb-5">
-                    <p>No events added yet.</p>
-                  </div>
-                )
-                : (
+            <div id="watched">
+              {events.length === 0 ? (
+                <div className="text-center mb-5">
+                  <p>No events added yet.</p>
+                </div>
+              ) : (
                   events.map(event => (
-                    <div className="dash-event" key={event.title}>
-                      <Link to="/events"><p className="dash-event-title" style={{ color: "black" }}>{event.title}</p></Link>
-                      <p className="dash-event-date">{moment(event.date).calendar()}</p>
+                    <div className="dash-event" key={event._id}>
+                      <Link to="/events">
+                        <p
+                          className="dash-event-title"
+                          style={{ color: "black" }}
+                        >
+                          {event.title}
+                        </p>
+                      </Link>
+                      <p className="dash-event-date">
+                        {moment(event.date).format("l")}
+                      </p>
                     </div>
                   ))
-                )
-            }
-            <Link to="/new" className="btn btn-primary mb-3">
+                )}
+            </div>
+            <Link to="/new" className="btn btn-primary mt-3 mb-3">
               + Add A New Event
             </Link>
           </div>

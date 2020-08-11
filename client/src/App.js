@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import DesktopNav from "./components/DesktopNav/DesktopNav";
 import MobileNav from "./components/MobileNav/MobileNav";
-import Footer from "./components/Footer";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -10,15 +9,19 @@ import NewEvent from "./pages/NewEvent";
 import ExistingEvents from "./pages/ExistingEvents";
 import CurrentData from "./pages/CurrentData";
 import TestingSites from "./pages/TestingSites";
+import Settings from "./pages/Settings";
 import { NotificationProvider } from "./utils/NotificationContext";
 import { AuthContext } from "./utils/AuthContext";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import API from "./utils/API";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./toast.css";
 
 toast.configure();
+
+API.convertCounties();
 
 function App() {
   const [authState, setAuthState] = useContext(AuthContext);
@@ -33,6 +36,7 @@ function App() {
     } else {
       setAuthState({ isAuthenticated: false, userId: null });
     }
+
   }, [isAuthenticated, setAuthState, userId]);
 
   const handleLogout = event => {
@@ -106,8 +110,14 @@ function App() {
                 loginRedirect
               )}
           </Route>
+          <Route exact path="/settings">
+            {authState.isAuthenticated === true ? (
+              <Settings />
+            ) : (
+              loginRedirect
+            )}
+          </Route>
         </Switch>
-        <Footer />
       </Router>
     </NotificationProvider>
   );
