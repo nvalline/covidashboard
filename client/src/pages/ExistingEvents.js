@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Event from "../components/Event";
 import { AuthContext } from "../utils/AuthContext";
 import API from "../utils/API";
 import { EventsContext } from "../utils/EventsContext";
-import IDB from "../utils/IDB";
+import syncDB from "../utils/SyncLS";
 
 function ExistingEvents() {
   // Setting our component's initial state
@@ -21,16 +21,16 @@ function ExistingEvents() {
         .catch(err => console.log(err));
     }
 
+    window.addEventListener("online", syncDB());
+
     loadUserEvents();
-  }, [authState]);
+  }, [authState, setEvents]);
 
   // Loads all events and sets them to events
   function loadEvents() {
     API.getEventsByUser(authState.userId)
       .then(res => {
         setEvents(res.data);
-        // update IndexedDB data
-        IDB.updateIDB(res.data);
       })
       .catch(err => console.log(err));
   }
@@ -38,7 +38,10 @@ function ExistingEvents() {
   // Deletes an evnt from the database with a given id, then reloads events from the db
   function deleteEvent(id) {
     if (!navigator.onLine) {
-      console.log("NAVIGATOR OFFLINE")
+      const newState = events.filter(event => event._id !== id);
+      const eventId = JSON.stringify(id);
+      localStorage.setItem("eventId", eventId);
+      setEvents(newState);
     } else {
       API.deleteEvent(id)
         .then(res => loadEvents())

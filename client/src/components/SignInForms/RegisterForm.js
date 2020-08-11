@@ -12,7 +12,7 @@ import { NotificationContext } from "../../utils/NotificationContext";
 import ErrorMessages from "./ErrorMessages";
 
 function RegisterForm() {
-    const [setNotificationState] = useContext(NotificationContext);
+    const [_, setNotificationState] = useContext(NotificationContext);
 
     let history = useHistory();
     const [user, setUser] = useState({ email: "", password: "", password2: "", state: "", county: "" });
@@ -106,7 +106,7 @@ function RegisterForm() {
                 text="Sign Up"
                 name="signUp"
                 onClick={handleFormSubmit}
-                />
+            />
             <p className="mt-3">Or, <Link to={'/login'}>Log in</Link></p>
             <p className="mt-3 encrypt">Your password is encrypted.</p>
         </form>

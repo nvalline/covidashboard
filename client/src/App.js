@@ -36,7 +36,6 @@ function App() {
     } else {
       setAuthState({ isAuthenticated: false, userId: null });
     }
-
   }, [isAuthenticated, setAuthState, userId]);
 
   const handleLogout = event => {
