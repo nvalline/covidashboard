@@ -5,8 +5,15 @@ import About from "../components/About";
 function Register() {
     return (
         <div className="container">
-            <RegisterForm />
-            <About />
+            <div className="row">
+                <div className="col">
+                    <About />
+                </div>
+                <div className="col">
+                    <RegisterForm />
+                </div>
+            </div>
+            
             <p className="text-center mt-5">&copy; Copyright 2020</p>
         </div>
     )
