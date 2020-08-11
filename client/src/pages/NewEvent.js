@@ -52,29 +52,31 @@ function NewEvent() {
     return <Redirect to={{ pathname: redirect }} />;
   } else {
     return (
-      <div className="container">
-        <h3 className="text-center mt-3">Add New Contact Event</h3>
-        <Input
-          label="Title"
-          type="text"
-          name="title"
-          placeholder="Event Title..."
-          onChange={handleInputChange}
-        />
-        <Input
-          label="Date"
-          type="datetime-local"
-          name="date"
-          onChange={handleInputChange}
-        />
-        <Textarea
-          label="Notes"
-          type="text"
-          name="notes"
-          placeholder="Add some additional notes..."
-          onChange={handleInputChange}
-        />
-        <SubmitBtn text="Submit" name="submit" onClick={handleFormSubmit} />
+      <div className="mm-15">
+        <div className="container">
+          <h3 className="text-center mt-3">Add New Contact Event</h3>
+          <Input
+            label="Title"
+            type="text"
+            name="title"
+            placeholder="Event Title..."
+            onChange={handleInputChange}
+          />
+          <Input
+            label="Date"
+            type="datetime-local"
+            name="date"
+            onChange={handleInputChange}
+          />
+          <Textarea
+            label="Notes"
+            type="text"
+            name="notes"
+            placeholder="Add some additional notes..."
+            onChange={handleInputChange}
+          />
+          <SubmitBtn text="Submit" name="submit" onClick={handleFormSubmit} />
+        </div>
       </div>
     );
   }

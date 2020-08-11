@@ -21,10 +21,12 @@ function TestingSites() {
       }, [authState.userId])
 
     return (
+      <div className="mm-30">
         <div className="container text-center">
             <p className="mt-5">Click the link below to find official testing locations for your state.</p>
             <Sites state={userState} sites={sites} />
         </div>
+      </div>
     )
 }
 
