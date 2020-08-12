@@ -1,18 +1,25 @@
-import React, { Suspense } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
 import * as serviceWorker from './serviceWorker';
 import { AuthProvider } from "./utils/AuthContext";
 import { EventsProvider } from "./utils/EventsContext";
+import { StateDataProvider } from "./utils/StateDataContext";
+import { UserLocalProvider } from "./utils/UserLocalContext";
+import { UserCountyProvider } from "./utils/UserCountyContext";
 
 ReactDOM.render(
     <AuthProvider>
-        <Suspense fallback={<p>Loading...</p>}>
-            <EventsProvider>
-                <App />
-            </EventsProvider>
-        </Suspense>
+        <StateDataProvider>
+            <UserLocalProvider>
+                <UserCountyProvider>
+                    <EventsProvider>
+                        <App />
+                    </EventsProvider>
+                </UserCountyProvider>
+            </UserLocalProvider>
+        </StateDataProvider>
     </AuthProvider>,
     document.getElementById("root"));
 

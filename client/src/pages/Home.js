@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 import { EventsContext } from "../utils/EventsContext";
+import { StateDataContext } from "../utils/StateDataContext";
+import { UserLocalContext } from "../utils/UserLocalContext";
+import { UserCountyContext } from "../utils/UserCountyContext";
 import axios from "axios";
 import API from "../utils/API";
 import ChartContainer from "../components/ChartContainer";
@@ -12,12 +15,12 @@ import counties from "../components/stateCounties.json";
 import syncDB from "../utils/SyncLS";
 
 function Home() {
-  const [stateData, setStateData] = useState({});
   const [userEmail, setUserEmail] = useState();
   const [authState] = useContext(AuthContext);
-  const [userState, setUserState] = useState();
-  const [userCounty, setUserCounty] = useState();
+  const [userState, setUserState] = useContext(UserLocalContext);
+  const [userCounty, setUserCounty] = useContext(UserCountyContext);
   const [events, setEvents] = useContext(EventsContext);
+  const [stateData, setStateData] = useContext(StateDataContext);
 
   useEffect(() => {
     API.getUser(authState.userId)
@@ -48,7 +51,7 @@ function Home() {
 
     window.addEventListener("online", syncDB());
 
-  }, [authState, authState.userId, setEvents])
+  }, [authState, authState.userId, setEvents, setStateData, setUserCounty, setUserState])
 
   function getCountyResults(userS, userC) {
     let stateName = counties.find(state => state.id === userS).name;
