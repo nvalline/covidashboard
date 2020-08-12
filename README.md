@@ -71,8 +71,14 @@ Data sources\
 
 Future improvements for the application:
 
-- Add notifications to events, either push or email, that will execute after two weeks; this will alert users that they can likely delete the event if they feel there are no symptoms in that tiem period
+- Add notifications to events, either push or email, that will execute after two weeks; this will alert users that they can likely delete the event if they feel there are no symptoms in that time period
 - Create an interatctive trend chart that allows users to select different datapoints to chart; some examples, from the API call, include:
+  - Total positive/negative tests
+  - Total currently hospitalized
+  - Total currently in ICU
+  - Total deaths
+- Expand application to other disease/virus/illnesses
+  - Example: Utilize event tracking as a teacher, for tracking when a child comes to school with flu-like symptoms
 
 ---
 
