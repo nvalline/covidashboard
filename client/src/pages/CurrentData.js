@@ -1,32 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from "../utils/AuthContext";
-import axios from "axios";
+import React, { useContext } from 'react';
+import { StateDataContext } from "../utils/StateDataContext";
+import { UserLocalContext } from "../utils/UserLocalContext";
+import { UserCountyContext } from "../utils/UserCountyContext";
 import SearchResults from "../components/SearchResults";
-import API from "../utils/API";
 import nytCounties from "../components/nyt-counties-data.json";
 import counties from "../components/stateCounties.json";
 
 const CurrentData = () => {
-  const [stateData, setStateData] = useState({});
-  const [authState] = useContext(AuthContext);
-  const [userState, setUserState] = useState();
-  const [userCounty, setUserCounty] = useState();
-
-  useEffect(() => {
-    API.getUser(authState.userId)
-      .then(res => {
-        let county = res.data.county;
-        setUserCounty(county);
-        let state = res.data.state.toLowerCase();
-        axios.get(`/api/current/${state}`)
-          .then(res2 => {
-            setStateData(res2.data);
-          })
-        state = state.toUpperCase();
-        setUserState(state);
-      })
-      .catch(err => console.log(err));
-  }, [authState.userId])
+  const [stateData] = useContext(StateDataContext);
+  const [userState] = useContext(UserLocalContext);
+  const [userCounty] = useContext(UserCountyContext);
 
   function getCountyResults(userS, userC) {
     let stateName = counties.find(state => state.id === userS).name;
@@ -44,13 +27,13 @@ const CurrentData = () => {
           <div className="data col-2 mt-3">
             <p className="data-title">Total Deaths</p>
             <p className="data-result">
-              { userState == null ? "N/A" : JSON.parse(getCountyResults(userState, userCounty).deaths).toLocaleString() } 
+              {userState == null ? "N/A" : JSON.parse(getCountyResults(userState, userCounty).deaths).toLocaleString()}
             </p>
           </div>
           <div className="data col-2 mt-3">
             <p className="data-title">Total Cases</p>
             <p className="data-result">
-              { userState == null ? "N/A" : JSON.parse(getCountyResults(userState, userCounty).cases).toLocaleString() } 
+              {userState == null ? "N/A" : JSON.parse(getCountyResults(userState, userCounty).cases).toLocaleString()}
             </p>
           </div>
           <div className="text-center mt-3">
