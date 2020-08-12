@@ -42,7 +42,7 @@ Sign up for an account by entering an email & password, along with the state & c
 
 ### Installation
 
-COVIDashboard is live [HERE](https://shiftymitch-covid19-tracker.herokuapp.com)
+COVIDashboard is live [HERE](https://evening-garden-26685.herokuapp.com/)
 
 ---
 
