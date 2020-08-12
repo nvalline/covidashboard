@@ -130,7 +130,7 @@ function Home() {
           <div id="events" className="col section">
             <h4 className="section-title">Watched Events</h4>
             <div id="watched">
-              {events.length === 0 ? (
+              {!events || events.length === 0 ? (
                 <div className="text-center mb-5">
                   <p>No events added yet.</p>
                 </div>
