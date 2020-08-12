@@ -106,6 +106,8 @@ function Home() {
               + Add A New Event
             </Link>
           </div>
+        </div>
+        <div className="row">
           {/* Cases */}
           <div id="cases" className="col section">
             <h4 className="section-title">Positive Cases</h4>
@@ -141,9 +143,6 @@ function Home() {
               </Link>
             </div>
           </div>
-        </div>
-
-        <div className="row">
           {/* Symptoms */}
           <div id="symptoms" className="col section">
             <h4 className="section-title">Symptoms</h4>
@@ -156,6 +155,7 @@ function Home() {
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
