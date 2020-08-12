@@ -109,6 +109,8 @@ function Home() {
               + Add A New Event
             </Link>
           </div>
+        </div>
+        <div className="row">
           {/* Cases */}
           <div id="cases" className="col section">
             <h4 className="section-title">Positive Cases</h4>
@@ -133,9 +135,16 @@ function Home() {
             <div className="row pocket">
               <div className="col">
                 <p>Total</p>
+                {userState === "DC" 
+                ? 
+                <p className="data-result">
+                  {stateData.positive}
+                </p>
+                :
                 <p className="data-result">
                   {userState == null ? "N/A" : getCountyResults(userState, userCounty)}
                 </p>
+                }
               </div>
             </div>
             <div className="text-center mt-3 mb-3">
@@ -144,9 +153,6 @@ function Home() {
               </Link>
             </div>
           </div>
-        </div>
-
-        <div className="row">
           {/* Symptoms */}
           <div id="symptoms" className="col section">
             <h4 className="section-title">Symptoms</h4>
@@ -159,6 +165,7 @@ function Home() {
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
