@@ -43,7 +43,7 @@ Sign up for an account using your email address, and supplying your current stat
 
 ### Installation
 
-COVIDashboard is deployed via Heroku and live [HERE](https://shiftymitch-covid19-tracker.herokuapp.com)
+COVIDashboard is deployed via Heroku and live [HERE](https://evening-garden-26685.herokuapp.com/)
 
 ---
 
