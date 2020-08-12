@@ -30,6 +30,8 @@ function App() {
   let isAuthenticated = localStorage.getItem("isAuthenticated");
   isAuthenticated = JSON.parse(isAuthenticated);
 
+  const customId = "covid19";
+
   useEffect(() => {
     if (isAuthenticated === true && userId) {
       setAuthState({ isAuthenticated, userId });
@@ -52,7 +54,11 @@ function App() {
   };
 
   const loginRedirect = () => {
-    toast.info("Please login")
+    console.log("LOGIN REDIRECT HIT")
+    toast.info("Please login", {
+      toastId: customId
+    });
+
     return (
       <Redirect to="/login" />
     )
