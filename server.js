@@ -9,8 +9,6 @@ const api = require("./routes/api");
 const auth = require("./routes/auth");
 const passport = require("./config/passport");
 
-require('dotenv').config();
-
 const app = express();
 
 const PORT = process.env.PORT || 3001;
@@ -57,7 +55,7 @@ if (process.env.NODE_ENV === "production") {
     app.get("*", (req, res) =>
         res.sendFile(path.join(__dirname, "./index.html"))
     );
-} 
+}
 
 app.listen(PORT, () => {
     console.log(`Server listening on PORT: ${PORT}`);

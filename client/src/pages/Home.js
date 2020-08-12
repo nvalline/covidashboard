@@ -9,7 +9,7 @@ import Symptoms from "../components/Symptoms";
 import moment from "moment-timezone";
 import nytCounties from "../components/nyt-counties-data.json";
 import counties from "../components/stateCounties.json";
-import IDB from "../utils/IDB";
+import syncDB from "../utils/SyncLS";
 
 function Home() {
   const [stateData, setStateData] = useState({});
@@ -33,29 +33,29 @@ function Home() {
         axios.get(`/api/current/${state}`)
           .then(res2 => {
             setStateData(res2.data);
-            getEvents();
+            loadUserEvents();
           })
       })
       .catch(err => console.log(err));
 
-    function getEvents() {
-      if (events !== undefined && events.length > 0) {
-      } else {
-        API.getEventsByUser(authState.userId)
-          .then(res => {
-            setEvents(res.data);
-            IDB.updateIDB(res.data);
-          })
-          .catch(err => console.log(err));
-      }
+    function loadUserEvents() {
+      API.getEventsByUser(authState.userId)
+        .then(res => {
+          setEvents(res.data);
+        })
+        .catch(err => console.log(err));
     }
-  }, [authState.userId, events])
+
+    window.addEventListener("online", syncDB());
+
+  }, [authState, authState.userId, setEvents])
 
   function getCountyResults(userS, userC) {
     let stateName = counties.find(state => state.id === userS).name;
     let cases = nytCounties.filter(county => county.county === userC && county.state === stateName);
     return JSON.parse(cases[0].cases).toLocaleString();
   }
+
 
   return (
     <div className="mm-15">
