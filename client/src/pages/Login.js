@@ -4,9 +4,11 @@ import Symptoms from "../components/Symptoms";
 
 function Login() {
     return (
-        <div className="container">
-            <LoginForm />
-            <Symptoms />
+        <div className="mm-15">
+            <div className="container">
+                <LoginForm />
+                <Symptoms />
+            </div>
         </div>
     )
 }

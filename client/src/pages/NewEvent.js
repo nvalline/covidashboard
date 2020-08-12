@@ -2,13 +2,15 @@ import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { Input, Textarea } from "../components/FormElements";
 import { AuthContext } from "../utils/AuthContext";
+import { EventsContext } from "../utils/EventsContext";
 import SubmitBtn from "../components/SubmitBtn";
 import API from "../utils/API";
-import IDB from "../utils/IDB";
 import moment from "moment-timezone";
+import uuid from "react-uuid";
 
 function NewEvent() {
   const [authState] = useContext(AuthContext);
+  const [events, setEvents] = useContext(EventsContext);
 
   // Setting our component's initial state
   const [formObject, setFormObject] = useState({});
@@ -24,57 +26,68 @@ function NewEvent() {
   // Then reload events from the database
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (formObject.date && formObject.title) {
-      API.saveEvent({
+    let formData = {
+      date: formObject.date,
+      title: formObject.title,
+      notes: formObject.notes,
+      noticeDate: moment(formObject.date).add(14, "d")._d,
+      user: authState.userId,
+    };
+
+    if (!navigator.onLine) {
+      formData = JSON.stringify(formData);
+      localStorage.setItem("formData", formData);
+      setEvents([...events, {
+        _id: uuid(),
         date: formObject.date,
         title: formObject.title,
         notes: formObject.notes,
         noticeDate: moment(formObject.date).add(14, "d")._d,
-        user: authState.userId,
-      })
-        .then(res => {
-          newIDB();
-          setRedirect("/events");
-        })
-        .catch(err => console.log(err));
-    }
-  }
+        user: authState.userId
+      }]);
 
-  function newIDB() {
-    API.getEventsByUser(authState.userId)
-      .then(res => {
-        IDB.updateIDB(res.data);
-      })
-      .catch(err => console.log(err));
+      setRedirect("/events");
+    } else {
+      if (formObject.date && formObject.title) {
+        API.saveEvent(formData)
+          .then(res => {
+            setRedirect("/events");
+          })
+          .catch(err => console.log(err));
+      }
+    }
+
   }
 
   if (redirect) {
     return <Redirect to={{ pathname: redirect }} />;
   } else {
     return (
-      <div className="container">
-        <h3 className="text-center mt-3">Add New Contact Event</h3>
-        <Input
-          label="Title"
-          type="text"
-          name="title"
-          placeholder="Event Title..."
-          onChange={handleInputChange}
-        />
-        <Input
-          label="Date"
-          type="datetime-local"
-          name="date"
-          onChange={handleInputChange}
-        />
-        <Textarea
-          label="Notes"
-          type="text"
-          name="notes"
-          placeholder="Add some additional notes..."
-          onChange={handleInputChange}
-        />
-        <SubmitBtn text="Submit" name="submit" onClick={handleFormSubmit} />
+      <div className="mm-15">
+        <div className="container">
+          <h3 className="text-center mt-3">Add New Contact Event</h3>
+          <Input
+            label="Title"
+            type="text"
+            name="title"
+            placeholder="Event Title..."
+            onChange={handleInputChange}
+          />
+          <Input
+            label="Date"
+            type="datetime-local"
+            name="date"
+            onChange={handleInputChange}
+          />
+          <Textarea
+            label="Notes"
+            type="text"
+            name="notes"
+            placeholder="Add some additional notes..."
+            onChange={handleInputChange}
+          />
+          <SubmitBtn text="Submit" name="submit" onClick={handleFormSubmit} />
+        </div>
       </div>
     );
   }

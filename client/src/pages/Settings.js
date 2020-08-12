@@ -53,35 +53,37 @@ function Settings() {
   }
 
   return (
-    <div className="container">
-      <h2 className="text-center mt-3 mb-5">User Settings</h2>
-        <div className="row">
-          <div className="col">
-            <StateSelect
-                name="state"
-                id="state"
-                label="User State:"
-                onChange={handleStateChange}
-            />
+    <div className="mm-30">
+      <div className="container">
+        <h2 className="text-center mt-3 mb-5">User Settings</h2>
+          <div className="row mobile-settings">
+            <div className="col">
+              <StateSelect
+                  name="state"
+                  id="state"
+                  label="User State:"
+                  onChange={handleStateChange}
+              />
+            </div>
+            <div className="col">
+              <CountySelect
+                  type="text"
+                  id="county"
+                  label="User County:"
+                  selectedstate={newUserState}
+                  onChange={handleCountyChange}
+              />
+            </div>
           </div>
-          <div className="col">
-            <CountySelect
-                type="text"
-                id="county"
-                label="User County:"
-                selectedstate={newUserState}
-                onChange={handleCountyChange}
-            />
+          <div className="text-right p-3">
+            <SubmitBtn
+                      text="Update"
+                      name="update"
+                      onClick={handleFormSubmit}
+                  />
           </div>
-        </div>
-        <div className="text-right p-3">
-          <SubmitBtn
-                    text="Update"
-                    name="update"
-                    onClick={handleFormSubmit}
-                />
-        </div>
       </div>
+    </div>
   );
 }
 

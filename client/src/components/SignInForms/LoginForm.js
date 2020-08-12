@@ -58,7 +58,7 @@ function LoginForm() {
         {notificationState.fromReg && (
           <SuccessMessage success={notificationState} />
         )}
-        {notificationState.msg && <ErrorMessages error={notificationState} />}
+        {!notificationState.fromReg && notificationState.msg && <ErrorMessages error={notificationState} />}
         <Input
           type="email"
           name="email"
