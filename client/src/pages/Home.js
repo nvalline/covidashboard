@@ -132,9 +132,16 @@ function Home() {
             <div className="row pocket">
               <div className="col">
                 <p>Total</p>
+                {userState === "DC" 
+                ? 
+                <p className="data-result">
+                  {stateData.positive}
+                </p>
+                :
                 <p className="data-result">
                   {userState == null ? "N/A" : getCountyResults(userState, userCounty)}
                 </p>
+                }
               </div>
             </div>
             <div className="text-center mt-3 mb-3">
