@@ -144,18 +144,24 @@ html, body, #root {
     padding: 5px;
     min-width: 335px;
   }
+
+  .mm-30 {
+    margin-bottom: 105px;
+  }
+
+  .mm-15 {
+    margin-bottom: 105px;
+  }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
   
   .mm-30 {
     margin-top: 30%;
-    margin-bottom: 25%;
   }
 
   .mm-15 {
     margin-top: 15%;
-    margin-bottom: 25%;
   }
 
   .mobile-settings {
@@ -175,4 +181,10 @@ html, body, #root {
     justify-content: center;
   }
 
+}
+
+@media only screen and (max-width: 350px) {
+  .section {
+    min-width: 250px;
+  }
 }
