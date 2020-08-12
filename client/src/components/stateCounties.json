@@ -358,7 +358,7 @@
   {
     "name": "District Of Columbia",
     "id": "DC",
-    "counties": []
+    "counties": ["District of Columbia"]
   },
   {
     "name": "Florida",
