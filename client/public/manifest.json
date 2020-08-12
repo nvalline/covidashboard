@@ -1,6 +1,6 @@
 {
-  "short_name": "COVID-19 TRACKER",
-  "name": "COVID-19 TRACKER",
+  "short_name": "COVIDashboard",
+  "name": "COVIDashboard",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
