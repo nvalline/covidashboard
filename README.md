@@ -23,7 +23,7 @@ Mobile View:\
 
 ### Description
 
-COVIDashboard is an individualized dashboard providing testing and patient data realated to the COVID-19 pandemic.
+COVIDashboard is an individualized dashboard providing testing and patient data related to the COVID-19 pandemic.
 
 Features include:
 
