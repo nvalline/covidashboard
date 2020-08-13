@@ -146,13 +146,11 @@ html, body, #root {
   }
 
   .mm-30 {
-    position: fixed;
-    bottom: 105px;
+    margin-bottom: 105px;
   }
 
   .mm-15 {
-    position: fixed;
-    bottom: 105px;
+    margin-bottom: 105px;
   }
 }
 
