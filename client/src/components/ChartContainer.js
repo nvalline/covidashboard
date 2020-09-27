@@ -25,7 +25,7 @@ const ChartData = props => {
     function chartData() {
       axios
         .get(
-          `https://covidtracking.com/api/v1/states/${lowercaseState}/daily.json`
+          `${'https://cors-anywhere.herokuapp.com/'}https://covidtracking.com/api/v1/states/${lowercaseState}/daily.json`
         )
         .then(res => {
           setUserState(res.data[0].state);
@@ -48,7 +48,7 @@ const ChartData = props => {
           setincreaseHos(dataset.increaseHos.reverse());
           setPosTests(dataset.positiveTests.reverse());
 
-          const a = parseInt(dataset.positiveTests[13]);
+          const a = parseInt(dataset.positiveTests[12]);
           const b = parseInt(dataset.positiveTests[0]);
           a > b ? setTrend("higher") : setTrend("lower");
         })
