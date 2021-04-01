@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/nvalline/project-3#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "chart.js": "^2.9.3",
     "connect-mongo": "^3.2.0",
