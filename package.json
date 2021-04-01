@@ -1,44 +1,47 @@
 {
-  "name": "covidashboard",
-  "version": "1.0.0",
-  "description": "COVIDashboard",
-  "main": "index.js",
-  "scripts": {
-    "start": "node server.js",
-    "start:dev": "concurrently \"nodemon server.js\" \"cd ./client && npm run start\"",
-    "heroku-postbuild": "cd client && npm install && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nvalline/project-3.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nvalline/project-3/issues"
-  },
-  "homepage": "https://github.com/nvalline/project-3#readme",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "bcryptjs": "^2.4.3",
-    "chart.js": "^2.9.3",
-    "connect-mongo": "^4.4.1",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "moment-timezone": "^0.5.31",
-    "mongoose": "^5.9.25",
-    "papaparse": "^5.2.0",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "react-chartjs-2": "^2.10.0",
-    "recharts": "^2.0.9"
-  },
-  "devDependencies": {
-    "concurrently": "^5.2.0",
-    "nodemon": "^2.0.4"
-  }
+	"name": "covidashboard",
+	"version": "1.0.0",
+	"engines": {
+		"node": "14.5.0"
+	},
+	"description": "COVIDashboard",
+	"main": "index.js",
+	"scripts": {
+		"start": "node server.js",
+		"start:dev": "concurrently \"nodemon server.js\" \"cd ./client && npm run start\"",
+		"heroku-postbuild": "cd client && npm install && npm run build",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"watch": "nodemon server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nvalline/project-3.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/nvalline/project-3/issues"
+	},
+	"homepage": "https://github.com/nvalline/project-3#readme",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"bcryptjs": "^2.4.3",
+		"chart.js": "^2.9.3",
+		"connect-mongo": "^4.4.1",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-session": "^1.17.1",
+		"moment-timezone": "^0.5.31",
+		"mongoose": "^5.9.25",
+		"papaparse": "^5.2.0",
+		"passport": "^0.4.1",
+		"passport-local": "^1.0.0",
+		"react-chartjs-2": "^2.10.0",
+		"recharts": "^2.0.9"
+	},
+	"devDependencies": {
+		"concurrently": "^5.2.0",
+		"nodemon": "^2.0.4"
+	}
 }
